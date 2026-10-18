@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl" id="html-root" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>یاشار آذرسعید | Yashar Azarsaeid</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* متغیرهای تم روشن (پیش‌فرض) */
+  :root[data-theme="light"] {
+    --bg-page: #E5E2DC;
+    --bg-card: #F4F3EF;
+    --bg-item: rgba(14, 23, 20, 0.03);
+    --bg-item-hover: rgba(154, 123, 79, 0.09);
+    --text-main: #0E1714;
+    --text-muted: #55625C;
+    --accent: #9A7B4F;
+    --accent-contrast: #F4F3EF;
+    --border: rgba(14, 23, 20, 0.12);
+    --border-subtle: rgba(14, 23, 20, 0.08);
+    --shadow: 0 20px 40px -15px rgba(14, 23, 20, 0.14);
+  }
+
+  /* متغیرهای تم تیره */
+  :root[data-theme="dark"] {
+    --bg-page: #090F0D;
+    --bg-card: #0E1714;
+    --bg-item: rgba(244, 243, 239, 0.03);
+    --bg-item-hover: rgba(197, 160, 112, 0.08);
+    --text-main: #F4F3EF;
+    --text-muted: #8E9B95;
+    --accent: #C5A070;
+    --accent-contrast: #0E1714;
+    --border: rgba(197, 160, 112, 0.18);
+    --border-subtle: rgba(244, 243, 239, 0.07);
+    --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    font-family: 'Vazirmatn', 'Inter', system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 14px;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  html[lang="en"] body {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  .card-wrapper {
+    width: 100%;
+    max-width: 410px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 26px 26px 30px;
+    box-shadow: var(--shadow);
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  /* خط برنزی بالای کارت */
+  .card-wrapper::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 3px;
+    background-color: var(--accent);
+  }
+
+  /* نوار ابزار بالا */
+  .top-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+  }
+
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.5px;
+  }
+
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--accent);
+  }
+
+  .actions-group {
+    display: flex;
+    gap: 8px;
+  }
+
+  .icon-btn {
+    background: var(--bg-item);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-main);
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 6px;
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter', 'Vazirmatn', sans-serif;
+    transition: all 0.2s ease;
+  }
+
+  .icon-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  /* بخش هویت و معرفی با ارتفاع قفل‌شده برای جلوگیری از تغییر سایز کارت */
+  .identity {
+    margin-bottom: 18px;
+  }
+
+  .name {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-main);
+    line-height: 34px;
+    height: 34px;
+    margin-bottom: 4px;
+    letter-spacing: -0.2px;
+    display: flex;
+    align-items: center;
+  }
+
+  html[lang="en"] .name {
+    font-size: 21px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  .title {
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 22px;
+    height: 22px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  .bio {
+    font-size: 12.5px;
+    line-height: 21px;
+    min-height: 42px; /* دقیقاً معادل ۲ خط در هر دو زبان */
+    color: var(--text-muted);
+    font-weight: 300;
+  }
+
+  html[lang="en"] .bio {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 21px;
+  }
+
+  /* تگ‌های مهارت */
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 22px;
+    direction: ltr;
+  }
+
+  html[dir="rtl"] .tags {
+    justify-content: flex-end;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-main);
+    background-color: var(--bg-item);
+    border: 1px solid var(--border-subtle);
+    padding: 4px 9px;
+    border-radius: 4px;
+  }
+
+  /* دکمه ذخیره مخاطب */
+  .btn-primary {
+    width: 100%;
+    height: 44px;
+    background-color: var(--accent);
+    color: var(--accent-contrast);
+    border: none;
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 13.5px;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 18px;
+    transition: opacity 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9;
+  }
+
+  /* شبکه لینک‌ها */
+  .links-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .row-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .link-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    background-color: var(--bg-item);
+    border: 1px solid var(--border-subtle);
+    height: 42px;
+    padding: 0 14px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+  }
+
+  .link-card:hover {
+    border-color: var(--accent);
+    background-color: var(--bg-item-hover);
+  }
+
+  .link-label {
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .link-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--text-main);
+    direction: ltr;
+    font-weight: 500;
+  }
+
+  .footer {
+    margin-top: 22px;
+    padding-top: 14px;
+    border-top: 1px solid var(--border-subtle);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    direction: ltr;
+  }
+</style>
+</head>
+<body>
+
+  <main class="card-wrapper">
+    
+    <!-- نوار کنترل بالا -->
+    <div class="top-controls">
+      <div class="status-badge">
+        <span class="status-dot"></span>
+        <span>SENIOR SPECIALIST</span>
+      </div>
+      <div class="actions-group">
+        <button class="icon-btn" onclick="toggleTheme()" id="theme-btn" title="Change Theme">
+          <!-- آیکون ماه به عنوان پیش‌فرض (چون تم اولیه روشن است) -->
+          <svg id="theme-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+        <button class="icon-btn" onclick="toggleLang()" id="lang-btn">EN</button>
+      </div>
+    </div>
+
+    <!-- معرفی و جایگاه شغلی -->
+    <div class="identity">
+      <h1 class="name" id="t-name">یاشار آذرسعید</h1>
+      <div class="title" id="t-title">تحلیل‌گر ارشد داده و متخصص هوش تجاری</div>
+      <p class="bio" id="t-bio">طراحی معماری داده، داشبوردهای تحلیلی سازمانی و یکپارچه‌سازی سیستم‌های نرم‌افزاری</p>
+    </div>
+
+    <!-- تگ‌های مهارت -->
+    <div class="tags">
+      <span class="tag">Data Architecture</span>
+      <span class="tag">System Integration</span>
+      <span class="tag">Power BI &amp; DAX</span>
+      <span class="tag">Enterprise Analytics</span>
+      <span class="tag">SQL &amp; ETL</span>
+    </div>
+
+    <!-- دکمه ذخیره مخاطب -->
+    <button class="btn-primary" onclick="downloadVCard()">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+        <circle cx="8.5" cy="7" r="4"></circle>
+        <line x1="20" y1="8" x2="20" y2="14"></line>
+        <line x1="23" y1="11" x2="17" y2="11"></line>
+      </svg>
+      <span id="t-save">ذخیره در مخاطبین (Save Contact)</span>
+    </button>
+
+    <!-- لیست راه‌های ارتباطی -->
+    <div class="links-stack">
+      
+      <a href="tel:+989113406338" class="link-card">
+        <span class="link-label" id="t-phone">تلفن همراه</span>
+        <span class="link-val">+98 911 340 6338</span>
+      </a>
+
+      <!-- ردیف دو ستونه برای لینکدین و گیت‌هاب -->
+      <div class="row-2col">
+        <a href="https://www.linkedin.com/in/iyashar/" target="_blank" class="link-card">
+          <span class="link-label" id="t-li">لینکدین</span>
+          <span class="link-val">in/iyashar</span>
+        </a>
+        <a href="https://github.com/iyashar/" target="_blank" class="link-card">
+          <span class="link-label" id="t-gh">گیت‌هاب</span>
+          <span class="link-val">gh/iyashar</span>
+        </a>
+      </div>
+
+      <!-- ردیف دو ستونه برای تلگرام و واتس‌اپ -->
+      <div class="row-2col">
+        <a href="https://t.me/iyasharA" target="_blank" class="link-card">
+          <span class="link-label" id="t-tg">تلگرام</span>
+          <span class="link-val">@iyasharA</span>
+        </a>
+        <a href="https://wa.me/989113406338" target="_blank" class="link-card">
+          <span class="link-label" id="t-wa">واتس‌اپ</span>
+          <span class="link-val">WhatsApp ↗</span>
+        </a>
+      </div>
+
+      <a href="mailto:yazarsaeid@gmail.com" class="link-card">
+        <span class="link-label" id="t-email">ایمیل</span>
+        <span class="link-val">yazarsaeid@gmail.com</span>
+      </a>
+
+      <a href="mailto:y.azarsaeid@ut.ac.ir" class="link-card">
+        <span class="link-label" id="t-edu">ایمیل آکادمیک</span>
+        <span class="link-val">y.azarsaeid@ut.ac.ir</span>
+      </a>
+
+    </div>
+
+    <div class="footer">
+      <span>DATA &bull; BI &bull; INTEGRATION</span>
+      <span>YASHAR AZARSAEID</span>
+    </div>
+
+  </main>
+
+  <script>
+    let lang = 'fa';
+    let theme = 'light'; // تم پیش‌فرض روشن
+
+    const dict = {
+      fa: {
+        dir: 'rtl',
+        btn: 'EN',
+        name: 'یاشار آذرسعید',
+        title: 'تحلیل‌گر ارشد داده و متخصص هوش تجاری',
+        bio: 'طراحی معماری داده، داشبوردهای تحلیلی سازمانی و یکپارچه‌سازی سیستم‌های نرم‌افزاری',
+        save: 'ذخیره در مخاطبین (Save Contact)',
+        phone: 'تلفن همراه',
+        li: 'لینکدین',
+        gh: 'گیت‌هاب',
+        tg: 'تلگرام',
+        wa: 'واتس‌اپ',
+        email: 'ایمیل',
+        edu: 'ایمیل آکادمیک'
+      },
+      en: {
+        dir: 'ltr',
+        btn: 'فا',
+        name: 'Yashar Azarsaeid',
+        title: 'Senior Data Analyst & BI Specialist',
+        bio: 'Designing enterprise data architectures, analytical BI dashboards & system integrations.',
+        save: 'Save to Contacts (vCard)',
+        phone: 'Mobile',
+        li: 'LinkedIn',
+        gh: 'GitHub',
+        tg: 'Telegram',
+        wa: 'WhatsApp',
+        email: 'Email',
+        edu: 'Academic'
+      }
+    };
+
+    function toggleLang() {
+      lang = lang === 'fa' ? 'en' : 'fa';
+      const d = dict[lang];
+      const root = document.getElementById('html-root');
+      
+      root.setAttribute('lang', lang);
+      root.setAttribute('dir', d.dir);
+      
+      document.getElementById('lang-btn').textContent = d.btn;
+      document.getElementById('t-name').textContent = d.name;
+      document.getElementById('t-title').textContent = d.title;
+      document.getElementById('t-bio').textContent = d.bio;
+      document.getElementById('t-save').textContent = d.save;
+      document.getElementById('t-phone').textContent = d.phone;
+      document.getElementById('t-li').textContent = d.li;
+      document.getElementById('t-gh').textContent = d.gh;
+      document.getElementById('t-tg').textContent = d.tg;
+      document.getElementById('t-wa').textContent = d.wa;
+      document.getElementById('t-email').textContent = d.email;
+      document.getElementById('t-edu').textContent = d.edu;
+    }
+
+    function toggleTheme() {
+      theme = theme === 'light' ? 'dark' : 'light';
+      document.getElementById('html-root').setAttribute('data-theme', theme);
+      const icon = document.getElementById('theme-icon');
+      if (theme === 'light') {
+        // آیکون ماه برای رفتن به حالت تیره
+        icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
+      } else {
+        // آیکون خورشید برای رفتن به حالت روشن
+        icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
+      }
+    }
+
+    function downloadVCard() {
+      const vcard = [
+        "BEGIN:VCARD",
+        "VERSION:3.0",
+        "N:Azarsaeid;Yashar;;;",
+        "FN:Yashar Azarsaeid (یاشار آذرسعید)",
+        "TITLE:Senior Data Analyst & BI Specialist | تحلیل‌گر ارشد داده و متخصص هوش تجاری",
+        "NOTE:Data Architecture, System Integration, Power BI & Enterprise Analytics",
+        "TEL;TYPE=CELL,VOICE:+989113406338",
+        "EMAIL;TYPE=PREF,INTERNET:yazarsaeid@gmail.com",
+        "EMAIL;TYPE=INTERNET:y.azarsaeid@ut.ac.ir",
+        "URL:https://www.linkedin.com/in/iyashar/",
+        "URL:https://github.com/iyashar/",
+        "URL:https://t.me/iyasharA",
+        "END:VCARD"
+      ].join("\n");
+
+      const blob = new Blob([vcard], { type: "text/vcard;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "Yashar_Azarsaeid.vcf");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+
+</body>
+</html>
