@@ -71,7 +71,7 @@
     transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
-  /* خط برنزی بالای کارت */
+  /* خط برنزی بالای صفحه */
   .card-wrapper::before {
     content: "";
     position: absolute;
@@ -82,29 +82,23 @@
     background-color: var(--accent);
   }
 
-  /* نوار ابزار بالا */
+  /* نوار ابزار بالا (حاوی لوگو و دکمه‌ها) */
   .top-controls {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
   }
 
-  .status-badge {
-    display: inline-flex;
+  .brand-logo {
+    display: flex;
     align-items: center;
-    gap: 6px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 0.5px;
+    gap: 8px;
   }
 
-  .status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background-color: var(--accent);
+  .brand-logo svg {
+    width: 28px;
+    height: 28px;
   }
 
   .actions-group {
@@ -134,7 +128,7 @@
     color: var(--accent);
   }
 
-  /* بخش هویت و معرفی با ارتفاع قفل‌شده برای جلوگیری از تغییر سایز کارت */
+  /* بخش هویت و معرفی */
   .identity {
     margin-bottom: 18px;
   }
@@ -171,7 +165,7 @@
   .bio {
     font-size: 12.5px;
     line-height: 21px;
-    min-height: 42px; /* دقیقاً معادل ۲ خط در هر دو زبان */
+    min-height: 42px;
     color: var(--text-muted);
     font-weight: 300;
   }
@@ -291,15 +285,19 @@
 
   <main class="card-wrapper">
     
-    <!-- نوار کنترل بالا -->
+    <!-- نوار کنترل بالا (حاوی لوگوی شماره ۴ و دکمه‌ها) -->
     <div class="top-controls">
-      <div class="status-badge">
-        <span class="status-dot"></span>
-        <span>SENIOR SPECIALIST</span>
+      <div class="brand-logo">
+        <!-- لوگوی شماره ۴ برداری متناسب با تم صفحه -->
+        <svg viewBox="0 0 64 64" fill="none">
+          <path d="M32 6L56 20V48L32 62L8 48V20L32 6Z" stroke="var(--text-main)" stroke-width="3.5" stroke-linejoin="round"/>
+          <path d="M8 20L32 34L56 20" stroke="var(--accent)" stroke-width="3.5" stroke-linejoin="round"/>
+          <path d="M32 34V62" stroke="var(--accent)" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M20 41L32 34L44 41" stroke="var(--text-main)" stroke-width="3" stroke-linecap="round"/>
+        </svg>
       </div>
       <div class="actions-group">
         <button class="icon-btn" onclick="toggleTheme()" id="theme-btn" title="Change Theme">
-          <!-- آیکون ماه به عنوان پیش‌فرض (چون تم اولیه روشن است) -->
           <svg id="theme-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
@@ -343,7 +341,7 @@
         <span class="link-val">+98 911 340 6338</span>
       </a>
 
-      <!-- ردیف دو ستونه برای لینکدین و گیت‌هاب -->
+      <!-- لینکدین و گیت‌هاب -->
       <div class="row-2col">
         <a href="https://www.linkedin.com/in/iyashar/" target="_blank" class="link-card">
           <span class="link-label" id="t-li">لینکدین</span>
@@ -355,7 +353,7 @@
         </a>
       </div>
 
-      <!-- ردیف دو ستونه برای تلگرام و واتس‌اپ -->
+      <!-- تلگرام و واتس‌اپ -->
       <div class="row-2col">
         <a href="https://t.me/iyasharA" target="_blank" class="link-card">
           <span class="link-label" id="t-tg">تلگرام</span>
@@ -388,7 +386,7 @@
 
   <script>
     let lang = 'fa';
-    let theme = 'light'; // تم پیش‌فرض روشن
+    let theme = 'light';
 
     const dict = {
       fa: {
@@ -442,6 +440,7 @@
       document.getElementById('t-tg').textContent = d.tg;
       document.getElementById('t-wa').textContent = d.wa;
       document.getElementById('t-email').textContent = d.email;
+      document.getElementById('t-edu').textContent, d.edu;
       document.getElementById('t-edu').textContent = d.edu;
     }
 
@@ -450,10 +449,8 @@
       document.getElementById('html-root').setAttribute('data-theme', theme);
       const icon = document.getElementById('theme-icon');
       if (theme === 'light') {
-        // آیکون ماه برای رفتن به حالت تیره
         icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>';
       } else {
-        // آیکون خورشید برای رفتن به حالت روشن
         icon.innerHTML = '<circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>';
       }
     }
