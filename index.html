@@ -85,15 +85,15 @@
   }
   .layout-shell.ready { opacity: 1; transform: translateY(0); }
 
-  /* تب‌های کناری (۴ تب) */
+  /* تب‌های کناری */
   .side-tabs {
-    display: flex; flex-direction: column; padding-top: 32px; z-index: 5; width: 38px; flex-shrink: 0; position: relative;
+    display: flex; flex-direction: column; padding-top: 24px; z-index: 5; width: 38px; flex-shrink: 0; position: relative;
   }
   html[dir="rtl"] .side-tabs { margin-left: -1px; }
   html[dir="ltr"] .side-tabs { margin-right: -1px; }
 
   .side-tab-btn {
-    background: transparent; border: none; width: 38px; height: 68px; margin-bottom: 0;
+    background: transparent; border: none; width: 38px; height: 84px; margin-bottom: 0;
     cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center;
     position: relative; padding: 0; z-index: 1; font-family: inherit;
     transition: height 0.2s ease, margin 0.2s ease;
@@ -104,15 +104,15 @@
   .tab-stroke { fill: none; stroke: var(--border-color); stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
 
   .tab-inner {
-    position: relative; z-index: 4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--text-muted); font-family: inherit; pointer-events: none;
+    position: relative; z-index: 4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--text-muted); font-family: inherit; pointer-events: none;
   }
-  .tab-inner svg { width: 15px; height: 15px; opacity: 0.65; }
-  .tab-label-mini { font-family: 'Vazirmatn', 'Inter', sans-serif; font-size: 8px; font-weight: 500; letter-spacing: -0.3px; }
+  .tab-inner svg { width: 18px; height: 18px; opacity: 0.7; }
+  .tab-label-mini { font-family: 'Vazirmatn', 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: -0.2px; }
 
-  .side-tab-btn.active { height: 76px; margin-top: -4px; margin-bottom: -4px; z-index: 10; }
+  .side-tab-btn.active { height: 94px; margin-top: -5px; margin-bottom: -5px; z-index: 10; }
   .side-tab-btn.active .tab-fill { fill: var(--bg-card); }
   .side-tab-btn.active .tab-inner { color: var(--accent); }
-  .side-tab-btn.active .tab-inner svg { opacity: 1; color: var(--accent); transform: scale(1.06); }
+  .side-tab-btn.active .tab-inner svg { opacity: 1; color: var(--accent); transform: scale(1.08); }
   .side-tab-btn.active .tab-label-mini { font-weight: 700; }
   
   .side-tab-btn.active::before {
@@ -156,7 +156,7 @@
   .phd-dot { width: 5px; height: 5px; background-color: var(--accent); border-radius: 50%; }
   .bio { font-size: 11.5px; line-height: 19px; min-height: 38px; color: var(--text-muted); font-weight: 300; }
 
-  /* محتوای تب‌ها با ارتفاع ثابت ۳۱۰ پیکسل */
+  /* محتوای تب‌ها */
   .tab-content-area {
     min-height: 310px; height: 310px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;
   }
@@ -191,45 +191,60 @@
   .info-box-badge { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--accent); background-color: var(--accent-soft); padding: 2px 5px; border-radius: 3px; white-space: nowrap; }
   .info-box-desc { font-size: 10.5px; line-height: 1.5; color: var(--text-muted); }
 
-  /* استایل جدید برای چیدمان ابزار و دکمه دانلود در کنار هم */
   .tool-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    background-color: var(--bg-item);
-    border: 1px solid var(--border-subtle);
-    border-radius: 6px;
-    padding: 8px 10px;
+    display: flex; align-items: center; gap: 8px; background-color: var(--bg-item); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 8px 10px;
   }
-  .tool-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 2px;
-  }
+  .tool-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
   .tool-btn-side {
-    background-color: var(--accent);
-    color: var(--accent-contrast);
-    border: none;
-    border-radius: 5px;
-    width: 36px;
-    height: 36px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    text-decoration: none;
-    flex-shrink: 0;
-    transition: opacity 0.2s ease;
+    background-color: var(--accent); color: var(--accent-contrast); border: none; border-radius: 5px;
+    width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+    cursor: pointer; text-decoration: none; flex-shrink: 0; transition: opacity 0.2s ease;
   }
-  .tool-btn-side:hover {
-    opacity: 0.9;
-  }
+  .tool-btn-side:hover { opacity: 0.9; }
 
   .footer {
     margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border-subtle);
     display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-muted); direction: ltr;
   }
+
+  /* ========================================================= */
+  /* استایل پنجره مودال قفل دانلود (Download Lead Modal)         */
+  /* ========================================================= */
+  .modal-overlay {
+    position: fixed; inset: 0; background: rgba(14, 23, 20, 0.7); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center; z-index: 10000;
+    opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0.25s;
+    padding: 14px;
+  }
+  .modal-overlay.active { opacity: 1; visibility: visible; }
+  .modal-card {
+    background-color: var(--bg-card); border: 1px solid var(--accent); border-radius: 10px;
+    max-width: 340px; width: 100%; padding: 22px 20px 20px; box-shadow: var(--shadow);
+    transform: translateY(15px); transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
+    position: relative;
+  }
+  .modal-overlay.active .modal-card { transform: translateY(0); }
+  .modal-close {
+    position: absolute; top: 12px; left: 14px; background: transparent; border: none;
+    color: var(--text-muted); cursor: pointer; font-size: 18px; line-height: 1;
+  }
+  html[dir="ltr"] .modal-close { left: auto; right: 14px; }
+  .modal-title { font-size: 13.5px; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
+  .modal-desc { font-size: 11px; line-height: 1.6; color: var(--text-muted); margin-bottom: 14px; }
+  .modal-input {
+    width: 100%; height: 38px; background: var(--bg-item); border: 1px solid var(--border-color);
+    border-radius: 6px; padding: 0 12px; font-family: 'JetBrains Mono', monospace; font-size: 13px;
+    color: var(--text-main); direction: ltr; text-align: center; margin-bottom: 8px; outline: none;
+    transition: border-color 0.2s;
+  }
+  .modal-input:focus { border-color: var(--accent); }
+  .modal-error { font-size: 10px; color: #d9534f; margin-bottom: 10px; display: none; text-align: center; }
+  .modal-submit {
+    width: 100%; height: 38px; background: var(--accent); color: var(--accent-contrast);
+    border: none; border-radius: 6px; font-family: inherit; font-size: 12px; font-weight: 700;
+    cursor: pointer; transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px;
+  }
+  .modal-submit:disabled { opacity: 0.6; cursor: not-allowed; }
 </style>
 </head>
 <body>
@@ -247,8 +262,6 @@
     
     <!-- ۴ تب کناری -->
     <aside class="side-tabs">
-      
-      <!-- تب ۱: تماس -->
       <button class="side-tab-btn active" onclick="switchTab('contact', this)">
         <svg class="tab-svg" viewBox="0 0 38 100" preserveAspectRatio="none">
           <path class="tab-fill" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100 Z"/>
@@ -262,7 +275,6 @@
         </div>
       </button>
 
-      <!-- تب ۲: پروژه‌ها -->
       <button class="side-tab-btn" onclick="switchTab('projects', this)">
         <svg class="tab-svg" viewBox="0 0 38 100" preserveAspectRatio="none">
           <path class="tab-fill" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100 Z"/>
@@ -274,11 +286,10 @@
             <polyline points="2 17 12 22 22 17"></polyline>
             <polyline points="2 12 12 17 22 12"></polyline>
           </svg>
-          <span class="tab-label-mini" id="tl-2">پروژه</span>
+          <span class="tab-label-mini" id="tl-2">پروژه‌ها</span>
         </div>
       </button>
 
-      <!-- تب ۳: ابزارها -->
       <button class="side-tab-btn" onclick="switchTab('tools', this)">
         <svg class="tab-svg" viewBox="0 0 38 100" preserveAspectRatio="none">
           <path class="tab-fill" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100 Z"/>
@@ -292,7 +303,6 @@
         </div>
       </button>
 
-      <!-- تب ۴: سوابق -->
       <button class="side-tab-btn" onclick="switchTab('creds', this)">
         <svg class="tab-svg" viewBox="0 0 38 100" preserveAspectRatio="none">
           <path class="tab-fill" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100 Z"/>
@@ -306,11 +316,9 @@
           <span class="tab-label-mini" id="tl-4">سوابق</span>
         </div>
       </button>
-
     </aside>
 
     <main class="card-wrapper">
-      
       <div class="top-controls">
         <div class="brand-logo">
           <svg viewBox="0 0 64 64" fill="none">
@@ -433,11 +441,10 @@
           </div>
         </div>
 
-        <!-- تب ۳: ابزارها (دکمه دانلود در کنار کادر با قابلیت افزودن ابزارهای بعدی زیر آن) -->
+        <!-- تب ۳: ابزارها (مجهز به قفل دانلود) -->
         <div id="tab-tools" class="tab-pane">
           <div class="items-list">
             
-            <!-- ابزار اول: اسلایسر شمسی -->
             <div class="tool-row">
               <div class="tool-info">
                 <div class="info-box-header" style="margin-bottom: 2px;">
@@ -446,32 +453,18 @@
                 </div>
                 <p class="info-box-desc" id="tool1-desc">افزونه سفارشی فیلتر تاریخ شمسی در پاور بی‌آی. (<span id="count-Shamsi_Slicer">...</span> دانلود)</p>
               </div>
-              <a href="https://raw.githubusercontent.com/iyashar/PowerBI_Shamsi_Slicer/main/Shamsi_Date_Slicer_PowerBI_v1.1.pbiviz" 
-                 class="tool-btn-side" 
-                 onclick="trackDownload('Shamsi_Slicer')" 
-                 download 
-                 title="دانلود افزونه">
+              
+              <!-- دکمه قفل‌دار برای باز کردن مودال -->
+              <button class="tool-btn-side" 
+                      onclick="openDownloadModal('Shamsi_Slicer', 'اسلایسر تاریخ شمسی پاور بی‌آی', 'https://raw.githubusercontent.com/iyashar/PowerBI_Shamsi_Slicer/main/Shamsi_Date_Slicer_PowerBI_v1.1.pbiviz')" 
+                      title="دریافت افزونه">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                   <polyline points="7 10 12 15 17 10"></polyline>
                   <line x1="12" y1="15" x2="12" y2="3"></line>
                 </svg>
-              </a>
+              </button>
             </div>
-
-            <!-- جاهای خالی برای ابزارهای بعدی که بعداً خواستید اضافه کنید: -->
-            <!-- 
-            <div class="tool-row">
-              <div class="tool-info">
-                <div class="info-box-header" style="margin-bottom: 2px;">
-                  <span class="info-box-title">نام ابزار بعدی</span>
-                  <span class="info-box-badge">v1.0</span>
-                </div>
-                <p class="info-box-desc">توضیحات کوتاه ابزار بعدی...</p>
-              </div>
-              <a href="..." class="tool-btn-side" download><svg ...>...</svg></a>
-            </div>
-            -->
 
           </div>
         </div>
@@ -516,7 +509,32 @@
 
   </div>
 
+  <!-- پنجره پاپ‌آپ دریافت شماره موبایل -->
+  <div class="modal-overlay" id="download-modal" onclick="closeDownloadModal(event)">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeDownloadModal()">✕</button>
+      <div class="modal-title" id="m-title">دریافت فایل ابزار</div>
+      <p class="modal-desc" id="m-desc">جهت دریافت لینک مستقیم و اطلاع از نسخه‌های بروزرسانی، شماره همراه خود را وارد کنید:</p>
+      
+      <input type="tel" class="modal-input" id="m-phone" placeholder="09xxxxxxxxx" maxlength="11" oninput="clearError()">
+      <div class="modal-error" id="m-error">لطفاً یک شماره همراه معتبر ۱۱ رقمی وارد کنید.</div>
+      
+      <button class="modal-submit" id="m-submit" onclick="submitAndDownload()">
+        <span>تایید و دریافت مستقیم فایل</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="7 10 12 15 17 10"></polyline>
+          <line x1="12" y1="15" x2="12" y2="3"></line>
+        </svg>
+      </button>
+    </div>
+  </div>
+
   <script>
+    // آدرس وب‌اپ گوگل شیت (آدرس دریافتی از مرحله ۱ را اینجا بگذارید)
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNn0Gbe86ebETiYHItUAEJTDsbiPUg1rvI_9tal3h5ZxZ66FW61TCww1yWawDs08C5/exec";
+
+    let activeTool = { key: '', name: '', url: '' };
+
     window.addEventListener('DOMContentLoaded', () => {
       setTimeout(() => {
         document.getElementById('splash-screen').classList.add('hidden');
@@ -534,6 +552,75 @@
       btnElement.classList.add('active');
     }
 
+    // باز و بسته کردن مودال دریافت شماره
+    function openDownloadModal(key, name, url) {
+      activeTool = { key, name, url };
+      document.getElementById('m-title').textContent = `دریافت ${name}`;
+      document.getElementById('m-phone').value = '';
+      clearError();
+      document.getElementById('download-modal').classList.add('active');
+      setTimeout(() => document.getElementById('m-phone').focus(), 150);
+    }
+
+    function closeDownloadModal(e) {
+      if (!e || e.target === document.getElementById('download-modal') || e.target.classList.contains('modal-close')) {
+        document.getElementById('download-modal').classList.remove('active');
+      }
+    }
+
+    function clearError() {
+      document.getElementById('m-error').style.display = 'none';
+      document.getElementById('m-phone').style.borderColor = 'var(--border-color)';
+    }
+
+    // اعتبارسنجی شماره، ارسال به شیت و دانلود
+    function submitAndDownload() {
+      const phoneInput = document.getElementById('m-phone');
+      const phoneVal = phoneInput.value.trim();
+      const irPhoneRegex = /^09[0-9]{9}$/;
+
+      if (!irPhoneRegex.test(phoneVal)) {
+        document.getElementById('m-error').style.display = 'block';
+        phoneInput.style.borderColor = '#d9534f';
+        return;
+      }
+
+      const btnSubmit = document.getElementById('m-submit');
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = 'در حال ثبت و دریافت...';
+
+      // ۱. ارسال به گوگل شیت
+      if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== "YOUR_GOOGLE_SCRIPT_WEBAPP_URL") {
+        fetch(GOOGLE_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            phone: phoneVal,
+            fileName: activeTool.name
+          })
+        }).catch(err => console.log('Sheet log error:', err));
+      }
+
+      // ۲. ثبت آمار در CountAPI
+      trackDownload(activeTool.key);
+
+      // ۳. آغاز دانلود فایل
+      setTimeout(() => {
+        const tempLink = document.createElement('a');
+        tempLink.href = activeTool.url;
+        tempLink.setAttribute('download', '');
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        document.body.removeChild(tempLink);
+
+        btnSubmit.disabled = false;
+        btnSubmit.innerHTML = '<span>تایید و دریافت مستقیم فایل</span>';
+        document.getElementById('download-modal').classList.remove('active');
+      }, 700);
+    }
+
+    // آمارگیر CountAPI
     function trackDownload(fileName) {
       const namespace = 'yashar-card-downloads';
       fetch(`https://api.countapi.xyz/hit/${namespace}/${fileName}`)
@@ -570,46 +657,26 @@
 
     const dict = {
       fa: {
-        dir: 'rtl',
-        btn: 'EN',
+        dir: 'rtl', btn: 'EN',
         name: 'یاشار آذرسعید',
         title: 'تحلیل‌گر ارشد داده و متخصص هوش تجاری',
         phd: 'پژوهشگر دکتری مهندسی صنایع • دانشگاه تهران',
         bio: 'طراحی معماری داده، داشبوردهای تحلیلی سازمانی و یکپارچه‌سازی سیستم‌های نرم‌افزاری',
-        tl1: 'تماس',
-        tl2: 'پروژه',
-        tl3: 'ابزارها',
-        tl4: 'سوابق',
+        tl1: 'تماس', tl2: 'پروژه‌ها', tl3: 'ابزارها', tl4: 'سوابق',
         save: 'ذخیره در مخاطبین (Save Contact)',
-        phone: 'تلفن همراه',
-        li: 'لینکدین',
-        gh: 'گیت‌هاب',
-        tg: 'تلگرام',
-        wa: 'واتس‌اپ',
-        email: 'ایمیل',
-        edu: 'ایمیل آکادمیک',
+        phone: 'تلفن همراه', li: 'لینکدین', gh: 'گیت‌هاب', tg: 'تلگرام', wa: 'واتس‌اپ', email: 'ایمیل', edu: 'ایمیل آکادمیک',
         tool1Title: 'اسلایسر تاریخ شمسی (Power BI)',
         tool1Desc: 'افزونه سفارشی فیلتر تاریخ شمسی در پاور بی‌آی.'
       },
       en: {
-        dir: 'ltr',
-        btn: 'فا',
+        dir: 'ltr', btn: 'فا',
         name: 'Yashar Azarsaeid',
         title: 'Senior Data Analyst & BI Specialist',
         phd: 'Ph.D. Candidate in Industrial Engineering • Univ. of Tehran',
         bio: 'Designing enterprise data architectures, analytical BI dashboards & system integrations.',
-        tl1: 'Info',
-        tl2: 'Work',
-        tl3: 'Tools',
-        tl4: 'Creds',
+        tl1: 'Info', tl2: 'Projects', tl3: 'Tools', tl4: 'Creds',
         save: 'Save to Contacts (vCard)',
-        phone: 'Mobile',
-        li: 'LinkedIn',
-        gh: 'GitHub',
-        tg: 'Telegram',
-        wa: 'WhatsApp',
-        email: 'Email',
-        edu: 'Academic',
+        phone: 'Mobile', li: 'LinkedIn', gh: 'GitHub', tg: 'Telegram', wa: 'WhatsApp', email: 'Email', edu: 'Academic',
         tool1Title: 'Shamsi Date Slicer (Power BI)',
         tool1Desc: 'Custom visual plugin for filtering Shamsi dates.'
       }
@@ -660,8 +727,7 @@
 
     function downloadVCard() {
       const vcard = [
-        "BEGIN:VCARD",
-        "VERSION:3.0",
+        "BEGIN:VCARD", "VERSION:3.0",
         "N:Azarsaeid;Yashar;;;",
         "FN:Yashar Azarsaeid (یاشار آذرسعید)",
         "TITLE:Senior Data Analyst & BI Specialist | Ph.D. Candidate in Industrial Engineering (UT)",
