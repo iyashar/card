@@ -1,18 +1,8 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl" id="html-root" data-theme="light">
 <head>
-  <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-RQF4BT9DXK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-RQF4BT9DXK');
-</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="google-site-verification" content="GJy0V-oLXJURSQKiAW-eDaQotdkiGQ0cr87xh08lbCE" />
 <title>یاشار آذرسعید | Yashar Azarsaeid</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -48,11 +38,7 @@
     --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.78);
   }
 
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
   body {
     background-color: var(--bg-page);
@@ -67,524 +53,171 @@
     overflow-x: hidden;
   }
 
-  html[lang="en"] body {
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-  }
+  html[lang="en"] body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
 
-  /* اسپلش‌اسکرین انیمیشن ورود لوگو */
   #splash-screen {
-    position: fixed;
-    inset: 0;
-    background-color: #0E1714;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.55s;
+    position: fixed; inset: 0; background-color: #0E1714;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    z-index: 9999; transition: opacity 0.55s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.55s;
   }
-
-  #splash-screen.hidden {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-  }
-
-  .splash-logo {
-    width: 76px;
-    height: 76px;
-    animation: pulseScale 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  }
-
-  .draw-outer {
-    stroke-dasharray: 200;
-    stroke-dashoffset: 200;
-    animation: drawLine 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards;
-  }
-
-  .draw-inner {
-    stroke-dasharray: 120;
-    stroke-dashoffset: 120;
-    animation: drawLine 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.35s forwards;
-  }
-
-  @keyframes drawLine {
-    to { stroke-dashoffset: 0; }
-  }
-
-  @keyframes pulseScale {
-    0% { transform: scale(0.88); opacity: 0; }
-    30% { opacity: 1; }
-    100% { transform: scale(1); opacity: 1; }
-  }
+  #splash-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .splash-logo { width: 76px; height: 76px; animation: pulseScale 1.4s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+  .draw-outer { stroke-dasharray: 200; stroke-dashoffset: 200; animation: drawLine 1.1s cubic-bezier(0.4, 0, 0.2, 1) 0.1s forwards; }
+  .draw-inner { stroke-dasharray: 120; stroke-dashoffset: 120; animation: drawLine 0.9s cubic-bezier(0.4, 0, 0.2, 1) 0.35s forwards; }
+  @keyframes drawLine { to { stroke-dashoffset: 0; } }
+  @keyframes pulseScale { 0% { transform: scale(0.88); opacity: 0; } 30% { opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
 
   .layout-shell {
-    display: flex;
-    align-items: flex-start;
-    width: 100%;
-    max-width: 485px;
-    opacity: 0;
-    transform: translateY(14px);
+    display: flex; align-items: flex-start; width: 100%; max-width: 495px;
+    opacity: 0; transform: translateY(14px);
     transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
+  .layout-shell.ready { opacity: 1; transform: translateY(0); }
 
-  .layout-shell.ready {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* ========================================================= */
-  /* استایل تب‌های ذوزنقه‌ای یکپارچه بدون سایه                  */
-  /* ========================================================= */
+  /* تب‌های کناری (۴ تب) */
   .side-tabs {
-    display: flex;
-    flex-direction: column;
-    padding-top: 42px;
-    z-index: 5;
-    width: 38px;
-    flex-shrink: 0;
-    position: relative;
+    display: flex; flex-direction: column; padding-top: 32px; z-index: 5; width: 38px; flex-shrink: 0; position: relative;
   }
-
-  html[dir="rtl"] .side-tabs {
-    margin-left: -1px;
-  }
-
-  html[dir="ltr"] .side-tabs {
-    margin-right: -1px;
-  }
+  html[dir="rtl"] .side-tabs { margin-left: -1px; }
+  html[dir="ltr"] .side-tabs { margin-right: -1px; }
 
   .side-tab-btn {
-    background: transparent;
-    border: none;
-    width: 38px;
-    height: 88px;
-    margin-bottom: 0;
-    cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    padding: 0;
-    z-index: 1;
-    font-family: inherit;
-    transition: height 0.2s cubic-bezier(0.4, 0, 0.2, 1), 
-                margin 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    background: transparent; border: none; width: 38px; height: 68px; margin-bottom: 0;
+    cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; padding: 0; z-index: 1; font-family: inherit;
+    transition: height 0.2s ease, margin 0.2s ease;
   }
-
-  .tab-svg {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    pointer-events: none;
-    display: block;
-  }
-
-  html[dir="ltr"] .tab-svg {
-    transform: scaleX(-1);
-  }
-
-  .tab-fill {
-    fill: var(--bg-side);
-    transition: fill 0.2s ease;
-  }
-
-  .tab-stroke {
-    fill: none;
-    stroke: var(--border-color);
-    stroke-width: 1px;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    vector-effect: non-scaling-stroke;
-    transition: stroke 0.2s ease;
-  }
+  .tab-svg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; pointer-events: none; display: block; }
+  html[dir="ltr"] .tab-svg { transform: scaleX(-1); }
+  .tab-fill { fill: var(--bg-side); transition: fill 0.2s ease; }
+  .tab-stroke { fill: none; stroke: var(--border-color); stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
 
   .tab-inner {
-    position: relative;
-    z-index: 4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-    color: var(--text-muted);
-    font-family: inherit;
-    transition: color 0.2s ease;
-    pointer-events: none;
+    position: relative; z-index: 4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--text-muted); font-family: inherit; pointer-events: none;
   }
+  .tab-inner svg { width: 15px; height: 15px; opacity: 0.65; }
+  .tab-label-mini { font-family: 'Vazirmatn', 'Inter', sans-serif; font-size: 8px; font-weight: 500; letter-spacing: -0.3px; }
 
-  .tab-inner svg {
-    width: 16px;
-    height: 16px;
-    opacity: 0.65;
-    transition: all 0.2s ease;
-  }
-
-  .tab-label-mini {
-    font-family: 'Vazirmatn', 'Inter', sans-serif;
-    font-size: 8.5px;
-    font-weight: 500;
-    letter-spacing: -0.2px;
-  }
-
-  .side-tab-btn.active {
-    height: 98px;
-    margin-top: -5px;
-    margin-bottom: -5px;
-    z-index: 10;
-  }
-
-  .side-tab-btn.active .tab-fill {
-    fill: var(--bg-card);
-  }
-
-  .side-tab-btn.active .tab-inner {
-    color: var(--accent);
-  }
-
-  .side-tab-btn.active .tab-inner svg {
-    opacity: 1;
-    color: var(--accent);
-    transform: scale(1.08);
-  }
-
-  .side-tab-btn.active .tab-label-mini {
-    font-weight: 700;
-  }
-
+  .side-tab-btn.active { height: 76px; margin-top: -4px; margin-bottom: -4px; z-index: 10; }
+  .side-tab-btn.active .tab-fill { fill: var(--bg-card); }
+  .side-tab-btn.active .tab-inner { color: var(--accent); }
+  .side-tab-btn.active .tab-inner svg { opacity: 1; color: var(--accent); transform: scale(1.06); }
+  .side-tab-btn.active .tab-label-mini { font-weight: 700; }
+  
   .side-tab-btn.active::before {
-    content: "";
-    position: absolute;
-    top: 1px;
-    bottom: 1px;
-    width: 3px;
-    background-color: var(--bg-card);
-    z-index: 3;
+    content: ""; position: absolute; top: 1px; bottom: 1px; width: 3px; background-color: var(--bg-card); z-index: 3;
   }
+  html[dir="rtl"] .side-tab-btn.active::before { left: -1px; }
+  html[dir="ltr"] .side-tab-btn.active::before { right: -1px; }
 
-  html[dir="rtl"] .side-tab-btn.active::before {
-    left: -1px;
-  }
-
-  html[dir="ltr"] .side-tab-btn.active::before {
-    right: -1px;
-  }
-
-  .side-tab-btn:hover:not(.active) {
-    z-index: 3;
-  }
-
-  .side-tab-btn:hover:not(.active) .tab-fill {
-    fill: var(--bg-card);
-  }
-
-  .side-tab-btn:hover:not(.active) .tab-inner {
-    color: var(--text-main);
-  }
+  .side-tab-btn:hover:not(.active) .tab-fill { fill: var(--bg-card); }
+  .side-tab-btn:hover:not(.active) .tab-inner { color: var(--text-main); }
 
   /* بدنه اصلی کارت */
   .card-wrapper {
-    flex: 1;
-    background-color: var(--bg-card);
-    border: 1px solid var(--border-color);
-    border-radius: 10px;
-    padding: 24px 22px 26px;
-    box-shadow: var(--shadow);
-    position: relative;
-    overflow: hidden;
-    z-index: 2;
-    transition: background-color 0.25s ease, border-color 0.25s ease;
+    flex: 1; background-color: var(--bg-card); border: 1px solid var(--border-color);
+    border-radius: 10px; padding: 24px 22px 26px; box-shadow: var(--shadow);
+    position: relative; overflow: hidden; z-index: 2;
   }
-
   .card-wrapper::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 0;
-    height: 3px;
-    background-color: var(--accent);
+    content: ""; position: absolute; top: 0; right: 0; left: 0; height: 3px; background-color: var(--accent);
   }
 
-  .top-controls {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-  }
-
-  .brand-logo svg {
-    width: 28px;
-    height: 28px;
-    display: block;
-  }
-
-  .actions-group {
-    display: flex;
-    gap: 7px;
-  }
-
+  .top-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+  .brand-logo svg { width: 28px; height: 28px; display: block; }
+  .actions-group { display: flex; gap: 7px; }
   .icon-btn {
-    background: var(--bg-item);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-main);
-    height: 28px;
-    padding: 0 9px;
-    border-radius: 5px;
-    font-size: 11px;
-    font-weight: 600;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Inter', 'Vazirmatn', sans-serif;
+    background: var(--bg-item); border: 1px solid var(--border-subtle); color: var(--text-main);
+    height: 28px; padding: 0 9px; border-radius: 5px; font-size: 11px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif;
     transition: all 0.2s ease;
   }
+  .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-  .icon-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  .identity {
-    margin-bottom: 16px;
-    padding-bottom: 14px;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .name {
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--text-main);
-    line-height: 30px;
-    height: 30px;
-    margin-bottom: 3px;
-    display: flex;
-    align-items: center;
-  }
-
-  html[lang="en"] .name {
-    font-size: 19px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-
-  .title {
-    font-size: 12.5px;
-    font-weight: 600;
-    color: var(--accent);
-    line-height: 19px;
-    height: 19px;
-    margin-bottom: 6px;
-    display: flex;
-    align-items: center;
-  }
-
+  .identity { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border-subtle); }
+  .name { font-size: 22px; font-weight: 700; color: var(--text-main); line-height: 30px; height: 30px; margin-bottom: 3px; display: flex; align-items: center; }
+  html[lang="en"] .name { font-size: 19px; letter-spacing: 1px; text-transform: uppercase; }
+  .title { font-size: 12.5px; font-weight: 600; color: var(--accent); line-height: 19px; height: 19px; margin-bottom: 6px; display: flex; align-items: center; }
   .phd-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 10.5px;
-    color: var(--text-main);
-    background-color: var(--accent-soft);
-    border: 1px solid var(--border-color);
-    padding: 3px 8px;
-    border-radius: 4px;
-    margin-bottom: 9px;
-    font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px; font-size: 10.5px; color: var(--text-main);
+    background-color: var(--accent-soft); border: 1px solid var(--border-color); padding: 3px 8px; border-radius: 4px; margin-bottom: 9px; font-weight: 500;
   }
+  .phd-dot { width: 5px; height: 5px; background-color: var(--accent); border-radius: 50%; }
+  .bio { font-size: 11.5px; line-height: 19px; min-height: 38px; color: var(--text-muted); font-weight: 300; }
 
-  .phd-dot {
-    width: 5px;
-    height: 5px;
-    background-color: var(--accent);
-    border-radius: 50%;
-  }
-
-  .bio {
-    font-size: 11.5px;
-    line-height: 19px;
-    min-height: 38px;
-    color: var(--text-muted);
-    font-weight: 300;
-  }
-
-  html[lang="en"] .bio {
-    font-weight: 400;
-    font-size: 11px;
-  }
-
-  /* قفل کردن ارتفاع کادر محتوا برای جلوگیری از پرش (Layout Shift) */
+  /* محتوای تب‌ها با ارتفاع ثابت ۳۱۰ پیکسل */
   .tab-content-area {
-    min-height: 310px;
-    height: 310px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
+    min-height: 310px; height: 310px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;
   }
+  .tab-pane { position: absolute; inset: 0; display: none; opacity: 0; transition: opacity 0.2s ease; overflow-y: auto; }
+  .tab-pane.active { display: flex; flex-direction: column; justify-content: space-between; opacity: 1; }
 
-  .tab-pane {
-    position: absolute;
-    inset: 0;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.2s ease;
-  }
-
-  .tab-pane.active {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    opacity: 1;
-  }
-
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    margin-bottom: 10px;
-    direction: ltr;
-  }
-
-  html[dir="rtl"] .tags {
-    justify-content: flex-end;
-  }
-
-  .tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9.5px;
-    color: var(--text-main);
-    background-color: var(--bg-item);
-    border: 1px solid var(--border-subtle);
-    padding: 3px 7px;
-    border-radius: 3px;
-  }
+  .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; direction: ltr; }
+  html[dir="rtl"] .tags { justify-content: flex-end; }
+  .tag { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--text-main); background-color: var(--bg-item); border: 1px solid var(--border-subtle); padding: 3px 7px; border-radius: 3px; }
 
   .btn-primary {
-    width: 100%;
-    height: 38px;
+    width: 100%; height: 38px; background-color: var(--accent); color: var(--accent-contrast);
+    border: none; border-radius: 5px; font-family: inherit; font-size: 12px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; margin-bottom: 10px; transition: opacity 0.2s ease; text-decoration: none;
+  }
+  .btn-primary:hover { opacity: 0.9; }
+
+  .links-stack { display: flex; flex-direction: column; gap: 5px; }
+  .row-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .link-card {
+    display: flex; align-items: center; justify-content: space-between; text-decoration: none;
+    background-color: var(--bg-item); border: 1px solid var(--border-subtle); height: 34px; padding: 0 10px; border-radius: 5px; transition: all 0.2s ease;
+  }
+  .link-card:hover { border-color: var(--accent); background-color: var(--bg-item-hover); }
+  .link-label { font-size: 11px; color: var(--text-muted); }
+  .link-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-main); direction: ltr; font-weight: 500; }
+
+  .items-list { display: flex; flex-direction: column; gap: 7px; }
+  .info-box { background-color: var(--bg-item); border: 1px solid var(--border-subtle); border-radius: 5px; padding: 9px 11px; }
+  .info-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; gap: 6px; }
+  .info-box-title { font-size: 11.5px; font-weight: 700; color: var(--text-main); }
+  .info-box-badge { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--accent); background-color: var(--accent-soft); padding: 2px 5px; border-radius: 3px; white-space: nowrap; }
+  .info-box-desc { font-size: 10.5px; line-height: 1.5; color: var(--text-muted); }
+
+  /* استایل جدید برای چیدمان ابزار و دکمه دانلود در کنار هم */
+  .tool-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--bg-item);
+    border: 1px solid var(--border-subtle);
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+  .tool-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .tool-btn-side {
     background-color: var(--accent);
     color: var(--accent-contrast);
     border: none;
     border-radius: 5px;
-    font-family: inherit;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
+    width: 36px;
+    height: 36px;
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 7px;
-    margin-bottom: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    flex-shrink: 0;
     transition: opacity 0.2s ease;
   }
-
-  .btn-primary:hover {
+  .tool-btn-side:hover {
     opacity: 0.9;
   }
 
-  .links-stack {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .row-2col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5px;
-  }
-
-  .link-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-decoration: none;
-    background-color: var(--bg-item);
-    border: 1px solid var(--border-subtle);
-    height: 34px;
-    padding: 0 10px;
-    border-radius: 5px;
-    transition: all 0.2s ease;
-  }
-
-  .link-card:hover {
-    border-color: var(--accent);
-    background-color: var(--bg-item-hover);
-  }
-
-  .link-label {
-    font-size: 11px;
-    color: var(--text-muted);
-  }
-
-  .link-val {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text-main);
-    direction: ltr;
-    font-weight: 500;
-  }
-
-  .items-list {
-    display: flex;
-    flex-direction: column;
-    gap: 7px;
-  }
-
-  .info-box {
-    background-color: var(--bg-item);
-    border: 1px solid var(--border-subtle);
-    border-radius: 5px;
-    padding: 9px 11px;
-  }
-
-  .info-box-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 3px;
-    gap: 6px;
-  }
-
-  .info-box-title {
-    font-size: 11.5px;
-    font-weight: 700;
-    color: var(--text-main);
-  }
-
-  .info-box-badge {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    color: var(--accent);
-    background-color: var(--accent-soft);
-    padding: 2px 5px;
-    border-radius: 3px;
-    white-space: nowrap;
-  }
-
-  .info-box-desc {
-    font-size: 10.5px;
-    line-height: 1.5;
-    color: var(--text-muted);
-  }
-
   .footer {
-    margin-top: 14px;
-    padding-top: 10px;
-    border-top: 1px solid var(--border-subtle);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 9px;
-    color: var(--text-muted);
-    direction: ltr;
+    margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border-subtle);
+    display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-muted); direction: ltr;
   }
 </style>
 </head>
@@ -601,6 +234,7 @@
 
   <div class="layout-shell" id="main-shell">
     
+    <!-- ۴ تب کناری -->
     <aside class="side-tabs">
       
       <!-- تب ۱: تماس -->
@@ -629,11 +263,25 @@
             <polyline points="2 17 12 22 22 17"></polyline>
             <polyline points="2 12 12 17 22 12"></polyline>
           </svg>
-          <span class="tab-label-mini" id="tl-2">پروژه‌ها</span>
+          <span class="tab-label-mini" id="tl-2">پروژه</span>
         </div>
       </button>
 
-      <!-- تب ۳: سوابق -->
+      <!-- تب ۳: ابزارها -->
+      <button class="side-tab-btn" onclick="switchTab('tools', this)">
+        <svg class="tab-svg" viewBox="0 0 38 100" preserveAspectRatio="none">
+          <path class="tab-fill" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100 Z"/>
+          <path class="tab-stroke" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100"/>
+        </svg>
+        <div class="tab-inner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
+          </svg>
+          <span class="tab-label-mini" id="tl-3">ابزارها</span>
+        </div>
+      </button>
+
+      <!-- تب ۴: سوابق -->
       <button class="side-tab-btn" onclick="switchTab('creds', this)">
         <svg class="tab-svg" viewBox="0 0 38 100" preserveAspectRatio="none">
           <path class="tab-fill" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100 Z"/>
@@ -644,7 +292,7 @@
             <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
             <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
           </svg>
-          <span class="tab-label-mini" id="tl-3">سوابق</span>
+          <span class="tab-label-mini" id="tl-4">سوابق</span>
         </div>
       </button>
 
@@ -683,6 +331,7 @@
 
       <div class="tab-content-area">
         
+        <!-- تب ۱: تماس -->
         <div id="tab-contact" class="tab-pane active">
           <div>
             <div class="tags">
@@ -744,6 +393,7 @@
           </div>
         </div>
 
+        <!-- تب ۲: پروژه‌ها -->
         <div id="tab-projects" class="tab-pane">
           <div class="items-list">
             <div class="info-box">
@@ -772,6 +422,50 @@
           </div>
         </div>
 
+        <!-- تب ۳: ابزارها (دکمه دانلود در کنار کادر با قابلیت افزودن ابزارهای بعدی زیر آن) -->
+        <div id="tab-tools" class="tab-pane">
+          <div class="items-list">
+            
+            <!-- ابزار اول: اسلایسر شمسی -->
+            <div class="tool-row">
+              <div class="tool-info">
+                <div class="info-box-header" style="margin-bottom: 2px;">
+                  <span class="info-box-title" id="tool1-title">اسلایسر تاریخ شمسی (Power BI)</span>
+                  <span class="info-box-badge">v1.1 .pbiviz</span>
+                </div>
+                <p class="info-box-desc" id="tool1-desc">افزونه سفارشی فیلتر تاریخ شمسی در پاور بی‌آی. (<span id="count-Shamsi_Slicer">...</span> دانلود)</p>
+              </div>
+              <a href="https://raw.githubusercontent.com/iyashar/PowerBI_Shamsi_Slicer/main/Shamsi_Date_Slicer_PowerBI_v1.1.pbiviz" 
+                 class="tool-btn-side" 
+                 onclick="trackDownload('Shamsi_Slicer')" 
+                 download 
+                 title="دانلود افزونه">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+              </a>
+            </div>
+
+            <!-- جاهای خالی برای ابزارهای بعدی که بعداً خواستید اضافه کنید: -->
+            <!-- 
+            <div class="tool-row">
+              <div class="tool-info">
+                <div class="info-box-header" style="margin-bottom: 2px;">
+                  <span class="info-box-title">نام ابزار بعدی</span>
+                  <span class="info-box-badge">v1.0</span>
+                </div>
+                <p class="info-box-desc">توضیحات کوتاه ابزار بعدی...</p>
+              </div>
+              <a href="..." class="tool-btn-side" download><svg ...>...</svg></a>
+            </div>
+            -->
+
+          </div>
+        </div>
+
+        <!-- تب ۴: سوابق -->
         <div id="tab-creds" class="tab-pane">
           <div class="items-list">
             <div class="info-box">
@@ -817,6 +511,8 @@
         document.getElementById('splash-screen').classList.add('hidden');
         document.getElementById('main-shell').classList.add('ready');
       }, 1350);
+
+      loadDownloadCount('Shamsi_Slicer');
     });
 
     function switchTab(tabId, btnElement) {
@@ -825,6 +521,37 @@
       
       document.getElementById('tab-' + tabId).classList.add('active');
       btnElement.classList.add('active');
+    }
+
+    function trackDownload(fileName) {
+      const namespace = 'yashar-card-downloads';
+      fetch(`https://api.countapi.xyz/hit/${namespace}/${fileName}`)
+        .then(res => res.json())
+        .then(data => {
+          const countEl = document.getElementById(`count-${fileName}`);
+          if(countEl && data.value !== undefined) {
+            countEl.textContent = data.value;
+          }
+        })
+        .catch(err => console.log('Tracking error:', err));
+    }
+
+    function loadDownloadCount(fileName) {
+      const namespace = 'yashar-card-downloads';
+      fetch(`https://api.countapi.xyz/get/${namespace}/${fileName}`)
+        .then(res => res.json())
+        .then(data => {
+          const countEl = document.getElementById(`count-${fileName}`);
+          if(countEl && data.value !== undefined) {
+            countEl.textContent = data.value;
+          } else {
+            countEl.textContent = '0';
+          }
+        })
+        .catch(err => {
+          const countEl = document.getElementById(`count-${fileName}`);
+          if(countEl) countEl.textContent = '0';
+        });
     }
 
     let lang = 'fa';
@@ -839,8 +566,9 @@
         phd: 'پژوهشگر دکتری مهندسی صنایع • دانشگاه تهران',
         bio: 'طراحی معماری داده، داشبوردهای تحلیلی سازمانی و یکپارچه‌سازی سیستم‌های نرم‌افزاری',
         tl1: 'تماس',
-        tl2: 'پروژه‌ها',
-        tl3: 'سوابق',
+        tl2: 'پروژه',
+        tl3: 'ابزارها',
+        tl4: 'سوابق',
         save: 'ذخیره در مخاطبین (Save Contact)',
         phone: 'تلفن همراه',
         li: 'لینکدین',
@@ -849,18 +577,8 @@
         wa: 'واتس‌اپ',
         email: 'ایمیل',
         edu: 'ایمیل آکادمیک',
-        p1Title: 'معماری داده و هوش تجاری سازمانی',
-        p1Desc: 'طراحی مدل‌های ستاره‌ای (Star Schema)، کنترل بهای تمام‌شده، انحراف مصرف (BOM) و داشبوردهای مدیریتی زنجیره تأمین و تولید.',
-        p2Title: 'یکپارچه‌سازی سیستم‌ها و اتوماسیون',
-        p2Desc: 'اتصال پایگاه‌های داده ناهمگون، استقرار راهکارهای ERP مدیریت پروژه و طراحی خطوط لوله داده (Data Pipelines) و گردش‌کارهای هوشمند.',
-        p3Title: 'توسعه پلتفرم‌های داده و فرم‌ساز پویا',
-        p3Desc: 'معماری و پیاده‌سازی سامانه‌های چندمستاجره (Multi-tenant) جمع‌آوری و اعتبارسنجی داده با قابلیت اتصال به مدل‌های هوش مصنوعی.',
-        c1Title: 'دکتری مهندسی صنایع',
-        c1Desc: 'دانشگاه تهران — تمرکز بر بهینه‌سازی سیستم‌ها، تصمیم‌گیری داده‌محور و تحلیل‌های پیشرفته کسب‌وکار.',
-        c2Title: 'رهبری تیم‌های داده و حاکمیت داده',
-        c2Desc: 'طراحی ساختار سازمانی تیم‌های مهندسی داده، هوش تجاری و تحلیل پیشرفته در مقیاس هلدینگ‌ها و صنایع بزرگ.',
-        c3Title: 'استقرار زیرساخت‌های همکاری و ERP',
-        c3Desc: 'مدیریت و پیاده‌سازی سیستم‌های برنامه‌ریزی منابع سازمانی و پلتفرم‌های همکاری درون‌سازمانی (On-Premise).'
+        tool1Title: 'اسلایسر تاریخ شمسی (Power BI)',
+        tool1Desc: 'افزونه سفارشی فیلتر تاریخ شمسی در پاور بی‌آی.'
       },
       en: {
         dir: 'ltr',
@@ -870,8 +588,9 @@
         phd: 'Ph.D. Candidate in Industrial Engineering • Univ. of Tehran',
         bio: 'Designing enterprise data architectures, analytical BI dashboards & system integrations.',
         tl1: 'Info',
-        tl2: 'Projects',
-        tl3: 'Creds',
+        tl2: 'Work',
+        tl3: 'Tools',
+        tl4: 'Creds',
         save: 'Save to Contacts (vCard)',
         phone: 'Mobile',
         li: 'LinkedIn',
@@ -880,18 +599,8 @@
         wa: 'WhatsApp',
         email: 'Email',
         edu: 'Academic',
-        p1Title: 'Enterprise Data Architecture & BI',
-        p1Desc: 'Architecting Star/Snowflake schemas, BOM variance models, and executive Power BI dashboards for manufacturing & supply chain.',
-        p2Title: 'System Integration & Automation',
-        p2Desc: 'Integrating distributed databases, deploying project management ERP solutions, and building automated ETL & AI workflows.',
-        p3Title: 'Dynamic Data Platforms',
-        p3Desc: 'Full-stack architecture of multi-tenant data collection & workflow platforms powered by TypeScript, NestJS, and AI.',
-        c1Title: 'Ph.D. Candidate in Industrial Engineering',
-        c1Desc: 'University of Tehran — Focused on systems optimization, data-driven decision making, and enterprise analytics.',
-        c2Title: 'Data Governance & Team Leadership',
-        c2Desc: 'Structuring and leading cross-functional Data Engineering, BI, and Advanced Analytics teams at enterprise scale.',
-        c3Title: 'Enterprise ERP & On-Premise Systems',
-        c3Desc: 'End-to-end implementation of organizational ERP software and secure on-premise collaboration infrastructures.'
+        tool1Title: 'Shamsi Date Slicer (Power BI)',
+        tool1Desc: 'Custom visual plugin for filtering Shamsi dates.'
       }
     };
 
@@ -912,6 +621,10 @@
       document.getElementById('tl-1').textContent = d.tl1;
       document.getElementById('tl-2').textContent = d.tl2;
       document.getElementById('tl-3').textContent = d.tl3;
+      document.getElementById('tl-4').textContent = d.tl4;
+
+      document.getElementById('tool1-title').textContent = d.tool1Title;
+      document.getElementById('tool1-desc').textContent = d.tool1Desc;
 
       document.getElementById('t-save').textContent = d.save;
       document.getElementById('t-phone').textContent = d.phone;
@@ -921,20 +634,6 @@
       document.getElementById('t-wa').textContent = d.wa;
       document.getElementById('t-email').textContent = d.email;
       document.getElementById('t-edu').textContent = d.edu;
-
-      document.getElementById('p1-title').textContent = d.p1Title;
-      document.getElementById('p1-desc').textContent = d.p1Desc;
-      document.getElementById('p2-title').textContent = d.p2Title;
-      document.getElementById('p2-desc').textContent = d.p2Desc;
-      document.getElementById('p3-title').textContent = d.p3Title;
-      document.getElementById('p3-desc').textContent = d.p3Desc;
-
-      document.getElementById('c1-title').textContent = d.c1Title;
-      document.getElementById('c1-desc').textContent = d.c1Desc;
-      document.getElementById('c2-title').textContent = d.c2Title;
-      document.getElementById('c2-desc').textContent = d.c2Desc;
-      document.getElementById('c3-title').textContent = d.c3Title;
-      document.getElementById('c3-desc').textContent = d.c3Desc;
     }
 
     function toggleTheme() {
