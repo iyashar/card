@@ -157,11 +157,20 @@
   .phd-dot { width: 5px; height: 5px; background-color: var(--accent); border-radius: 50%; }
   .bio { font-size: 11.5px; line-height: 19px; min-height: 38px; color: var(--text-muted); font-weight: 300; }
 
+  /* تنظیمات اسکرول‌بار تب‌ها برای حالت رشد لیست */
   .tab-content-area {
-    min-height: 310px; height: 310px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden;
+    min-height: 310px; height: 310px; position: relative; overflow: hidden;
   }
-  .tab-pane { position: absolute; inset: 0; display: none; opacity: 0; transition: opacity 0.2s ease; overflow-y: auto; }
-  .tab-pane.active { display: flex; flex-direction: column; justify-content: space-between; opacity: 1; }
+  .tab-pane { 
+    position: absolute; inset: 0; display: none; opacity: 0; transition: opacity 0.2s ease; overflow-y: auto; 
+    padding-left: 4px; 
+  }
+  .tab-pane.active { display: flex; flex-direction: column; opacity: 1; }
+  
+  .tab-pane::-webkit-scrollbar { width: 4px; }
+  .tab-pane::-webkit-scrollbar-track { background: transparent; }
+  .tab-pane::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 4px; }
+  .tab-pane::-webkit-scrollbar-thumb:hover { background-color: var(--accent); }
 
   .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; direction: ltr; }
   html[dir="rtl"] .tags { justify-content: flex-end; }
@@ -184,27 +193,31 @@
   .link-label { font-size: 11px; color: var(--text-muted); }
   .link-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-main); direction: ltr; font-weight: 500; }
 
-  .items-list { display: flex; flex-direction: column; gap: 7px; }
+  .items-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: auto;}
   .info-box { background-color: var(--bg-item); border: 1px solid var(--border-subtle); border-radius: 5px; padding: 9px 11px; }
   .info-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; gap: 6px; }
   .info-box-title { font-size: 11.5px; font-weight: 700; color: var(--text-main); }
   .info-box-badge { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--accent); background-color: var(--accent-soft); padding: 2px 5px; border-radius: 3px; white-space: nowrap; }
   .info-box-desc { font-size: 10.5px; line-height: 1.5; color: var(--text-muted); }
 
-  .tool-row {
-    display: flex; align-items: center; gap: 8px; background-color: var(--bg-item); border: 1px solid var(--border-subtle); border-radius: 6px; padding: 8px 10px;
+  /* استایل باکس دانلود افقی برای ابزارها */
+  .tool-versions {
+    display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;
   }
-  .tool-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
-  .tool-btn-side {
-    background-color: var(--accent); color: var(--accent-contrast); border: none; border-radius: 5px;
-    width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
-    cursor: pointer; text-decoration: none; flex-shrink: 0; transition: opacity 0.2s ease;
+  .dl-mini-btn {
+    flex: 1; min-width: 120px; background-color: var(--bg-card); border: 1px solid var(--border-color);
+    color: var(--text-main); height: 28px; border-radius: 4px; font-family: inherit; font-size: 10px;
+    font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;
+    transition: all 0.2s ease;
   }
-  .tool-btn-side:hover { opacity: 0.9; }
-
+  .dl-mini-btn:hover {
+    border-color: var(--accent); color: var(--accent); background-color: var(--bg-item-hover);
+  }
+  .dl-mini-btn svg { width: 13px; height: 13px; }
+  
   .footer {
     margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border-subtle);
-    display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-muted); direction: ltr;
+    display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-muted); direction: ltr; flex-shrink: 0;
   }
 
   .modal-overlay {
@@ -348,7 +361,7 @@
         
         <!-- تب ۱: تماس -->
         <div id="tab-contact" class="tab-pane active">
-          <div>
+          <div class="items-list">
             <div class="tags">
               <span class="tag">Data Architecture</span>
               <span class="tag">System Integration</span>
@@ -366,45 +379,44 @@
               </svg>
               <span id="t-save">ذخیره در مخاطبین (Save Contact)</span>
             </button>
-          </div>
 
-          <div class="links-stack">
-            <a href="tel:+989113406338" class="link-card">
-              <span class="link-label" id="t-phone">تلفن همراه</span>
-              <span class="link-val">+98 911 340 6338</span>
-            </a>
-
-            <div class="row-2col">
-              <a href="https://www.linkedin.com/in/iyashar/" target="_blank" class="link-card">
-                <span class="link-label" id="t-li">لینکدین</span>
-                <span class="link-val">in/iyashar</span>
+            <div class="links-stack">
+              <a href="tel:+989113406338" class="link-card">
+                <span class="link-label" id="t-phone">تلفن همراه</span>
+                <span class="link-val">+98 911 340 6338</span>
               </a>
-              <a href="https://github.com/iyashar/" target="_blank" class="link-card">
-                <span class="link-label" id="t-gh">گیت‌هاب</span>
-                <span class="link-val">gh/iyashar</span>
+
+              <div class="row-2col">
+                <a href="https://www.linkedin.com/in/iyashar/" target="_blank" class="link-card">
+                  <span class="link-label" id="t-li">لینکدین</span>
+                  <span class="link-val">in/iyashar</span>
+                </a>
+                <a href="https://github.com/iyashar/" target="_blank" class="link-card">
+                  <span class="link-label" id="t-gh">گیت‌هاب</span>
+                  <span class="link-val">gh/iyashar</span>
+                </a>
+              </div>
+
+              <div class="row-2col">
+                <a href="https://t.me/iyasharA" target="_blank" class="link-card">
+                  <span class="link-label" id="t-tg">تلگرام</span>
+                  <span class="link-val">@iyasharA</span>
+                </a>
+                <a href="https://wa.me/989113406338" target="_blank" class="link-card">
+                  <span class="link-label" id="t-wa">واتس‌اپ</span>
+                  <span class="link-val">WhatsApp ↗</span>
+                </a>
+              </div>
+
+              <a href="mailto:yazarsaeid@gmail.com" class="link-card">
+                <span class="link-label" id="t-email">ایمیل</span>
+                <span class="link-val">yazarsaeid@gmail.com</span>
+              </a>
+              <a href="mailto:y.azarsaeid@ut.ac.ir" class="link-card">
+                <span class="link-label" id="t-edu">ایمیل آکادمیک</span>
+                <span class="link-val">y.azarsaeid@ut.ac.ir</span>
               </a>
             </div>
-
-            <div class="row-2col">
-              <a href="https://t.me/iyasharA" target="_blank" class="link-card">
-                <span class="link-label" id="t-tg">تلگرام</span>
-                <span class="link-val">@iyasharA</span>
-              </a>
-              <a href="https://wa.me/989113406338" target="_blank" class="link-card">
-                <span class="link-label" id="t-wa">واتس‌اپ</span>
-                <span class="link-val">WhatsApp ↗</span>
-              </a>
-            </div>
-
-            <a href="mailto:yazarsaeid@gmail.com" class="link-card">
-              <span class="link-label" id="t-email">ایمیل</span>
-              <span class="link-val">yazarsaeid@gmail.com</span>
-            </a>
-
-            <a href="mailto:y.azarsaeid@ut.ac.ir" class="link-card">
-              <span class="link-label" id="t-edu">ایمیل آکادمیک</span>
-              <span class="link-val">y.azarsaeid@ut.ac.ir</span>
-            </a>
           </div>
         </div>
 
@@ -437,50 +449,50 @@
           </div>
         </div>
 
-        <!-- تب ۳: ابزارها (شامل دو نسخه اسلایسر) -->
+        <!-- تب ۳: ابزارها -->
         <div id="tab-tools" class="tab-pane">
           <div class="items-list">
             
-            <!-- ابزار ۱: اسلایسر نسخه جدید ۱.۱ -->
-            <div class="tool-row">
-              <div class="tool-info">
-                <div class="info-box-header" style="margin-bottom: 2px;">
-                  <span class="info-box-title" id="tool1-title">اسلایسر تاریخ شمسی (نسخه جدید)</span>
-                  <span class="info-box-badge">v1.1 .pbiviz</span>
-                </div>
-                <p class="info-box-desc" id="tool1-desc">سازگار با نسخه‌های به‌روز Power BI Desktop و سرویس ابری. (<span id="count-Shamsi_Slicer">0</span> دانلود)</p>
+            <!-- باکس ابزار ۱: اسلایسر شمسی -->
+            <div class="info-box">
+              <div class="info-box-header" style="margin-bottom: 4px;">
+                <span class="info-box-title" id="tool1-title">اسلایسر تاریخ شمسی (Power BI)</span>
+                <span class="info-box-badge">Visual</span>
               </div>
+              <p class="info-box-desc" id="tool1-desc">افزونه سفارشی فیلتر و مدیریت تاریخ‌های شمسی در داشبوردها با عملکرد بهینه.</p>
               
-              <button class="tool-btn-side" 
-                      onclick="openDownloadModal('Shamsi_Slicer', 'اسلایسر تاریخ شمسی پاور بی‌آی (نسخه ۱.۱)', 'https://raw.githubusercontent.com/iyashar/PowerBI_Shamsi_Slicer/main/Shamsi_Date_Slicer_PowerBI_v1.1.pbiviz')" 
-                      title="دریافت نسخه جدید">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-              </button>
+              <!-- دکمه‌های نسخه‌های مختلف اسلایسر -->
+              <div class="tool-versions">
+                <button class="dl-mini-btn" onclick="openDownloadModal('Shamsi_Slicer', 'اسلایسر تاریخ شمسی پاور بی‌آی (نسخه ۱.۱)', 'https://raw.githubusercontent.com/iyashar/PowerBI_Shamsi_Slicer/main/Shamsi_Date_Slicer_PowerBI_v1.1.pbiviz')" title="سازگار با نسخه‌های ابری و جدید">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <span><span class="t-new-ver">نسخه جدید</span> (<span id="count-Shamsi_Slicer">0</span>)</span>
+                </button>
+                <button class="dl-mini-btn" onclick="openDownloadModal('Shamsi_Slicer_Legacy', 'اسلایسر شمسی پاور بی‌آی (نسخه ۲۰۲۰ و قبل‌تر)', 'https://raw.githubusercontent.com/iyashar/PowerBI_Shamsi_Slicer/main/Shamsi_Date_Slicer_Legacy_2020.pbiviz')" title="پشتیبانی از Report Server و نسخه‌های قدیمی">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <span><span class="t-old-ver">نسخه ۲۰۲۰</span> (<span id="count-Shamsi_Slicer_Legacy">0</span>)</span>
+                </button>
+              </div>
             </div>
 
-            <!-- ابزار ۲: اسلایسر نسخه قدیمی (سازگار با ۲۰۲۰ و قبل‌تر) -->
-            <div class="tool-row">
-              <div class="tool-info">
-                <div class="info-box-header" style="margin-bottom: 2px;">
-                  <span class="info-box-title" id="tool2-title">اسلایسر تاریخ شمسی (سازگار با ۲۰۲۰ و قبل‌تر)</span>
-                  <span class="info-box-badge">Legacy .pbiviz</span>
-                </div>
-                <p class="info-box-desc" id="tool2-desc">پشتیبانی ویژه از نسخه‌های قدیمی و سرورهای On-Premise. (<span id="count-Shamsi_Slicer_Legacy">0</span> دانلود)</p>
+            <!-- باکس ابزار ۲: تقویم شمسی -->
+            <div class="info-box">
+              <div class="info-box-header" style="margin-bottom: 4px;">
+                <span class="info-box-title" id="tool2-title">تقویم شمسی (Power BI)</span>
+                <span class="info-box-badge">Visual</span>
               </div>
+              <p class="info-box-desc" id="tool2-desc">نمایش ماتریسی و جدولی تقویم شمسی با قابلیت انتخاب بازه‌های زمانی مشخص.</p>
               
-              <button class="tool-btn-side" 
-                      onclick="openDownloadModal('Shamsi_Slicer_Legacy', 'اسلایسر شمسی پاور بی‌آی (نسخه ۲۰۲۰ و قبل‌تر)', 'https://raw.githubusercontent.com/iyashar/PowerBI_Shamsi_Slicer/main/Shamsi_Date_Slicer_Legacy_2020.pbiviz')" 
-                      title="دریافت نسخه سازگار با ۲۰۲۰">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                  <polyline points="7 10 12 15 17 10"></polyline>
-                  <line x1="12" y1="15" x2="12" y2="3"></line>
-                </svg>
-              </button>
+              <!-- دکمه‌های نسخه‌های مختلف تقویم -->
+              <div class="tool-versions">
+                <button class="dl-mini-btn" onclick="openDownloadModal('Shamsi_Calendar', 'تقویم شمسی پاور بی‌آی (نسخه جدید)', 'https://raw.githubusercontent.com/iyashar/PowerBI_Shamsi_Calender/main/Shamsi_Advanced_Calender_PowerBI.pbiviz')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <span><span class="t-new-ver">نسخه جدید</span> (<span id="count-Shamsi_Calendar">0</span>)</span>
+                </button>
+                <button class="dl-mini-btn" onclick="openDownloadModal('Shamsi_Calendar_Legacy', 'تقویم شمسی پاور بی‌آی (نسخه ۲۰۲۰)', 'https://raw.githubusercontent.com/iyashar/PowerBI_Shamsi_Calender/main/Shamsi_Advanced_Calender_PowerBI_PBIRS.pbiviz')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <span><span class="t-old-ver">نسخه ۲۰۲۰</span> (<span id="count-Shamsi_Calendar_Legacy">0</span>)</span>
+                </button>
+              </div>
             </div>
 
           </div>
@@ -547,8 +559,8 @@
   </div>
 
   <script>
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNn0Gbe86ebETiYHItUAEJTDsbiPUg1rvI_9tal3h5ZxZ66FW61TCww1yWawDs08C5/exec";
-    const COUNT_NAMESPACE = 'yashar_portfolio_stats';
+    // آدرس دقیق اسکریپت گوگل درایو شما
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6XE69U8HeUL2TR9sgeI39BGkH6Q52i95bt0ff6tHZ2PzhGHruAqnt3689Mws_LKMD/exec";
 
     let activeTool = { key: '', name: '', url: '' };
 
@@ -558,8 +570,11 @@
         document.getElementById('main-shell').classList.add('ready');
       }, 1350);
 
-      loadDownloadCount('Shamsi_Slicer');
-      loadDownloadCount('Shamsi_Slicer_Legacy');
+      // بارگذاری آمار منحصراً از دیتابیس گوگل شیت
+      loadDownloadCount('اسلایسر تاریخ شمسی پاور بی‌آی (نسخه ۱.۱)', 'count-Shamsi_Slicer');
+      loadDownloadCount('اسلایسر شمسی پاور بی‌آی (نسخه ۲۰۲۰ و قبل‌تر)', 'count-Shamsi_Slicer_Legacy');
+      loadDownloadCount('تقویم شمسی پاور بی‌آی (نسخه جدید)', 'count-Shamsi_Calendar');
+      loadDownloadCount('تقویم شمسی پاور بی‌آی (نسخه ۲۰۲۰)', 'count-Shamsi_Calendar_Legacy');
     });
 
     function switchTab(tabId, btnElement) {
@@ -570,18 +585,34 @@
       btnElement.classList.add('active');
     }
 
-    // باز کردن مودال یا دانلود مستقیم اگر شماره از قبل ذخیره شده باشد
     function openDownloadModal(key, name, url) {
       activeTool = { key, name, url };
 
+      // بررسی وضعیت دانلود برای این ابزار خاص
       const savedPhone = localStorage.getItem('user_phone');
+      const hasDownloadedThisTool = localStorage.getItem(`downloaded_${key}`);
+
       if (savedPhone) {
-        // شماره از قبل موجود است؛ ارسال لاگ به شیت و شروع آنی دانلود
-        executeDownloadWithLog(savedPhone, true);
+        // کاربر قبلا شماره داده است، پس پاپ آپ را باز نمی‌کنیم
+        // اگر این ابزار را قبلا دانلود نکرده، در شیت ثبت می‌کنیم و آمار بالا می‌رود
+        if (!hasDownloadedThisTool) {
+           logToGoogleSheet(savedPhone, false);
+           incrementLocalCount(key);
+           localStorage.setItem(`downloaded_${key}`, 'true');
+        }
+        
+        // در هر صورت فایل دانلود می‌شود
+        const tempLink = document.createElement('a');
+        tempLink.href = activeTool.url;
+        tempLink.setAttribute('download', '');
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        document.body.removeChild(tempLink);
+        
         return;
       }
 
-      // کاربر بار اول است که دانلود می‌کند
+      // کاربر بار اول است که فایلی را از این سایت دانلود می‌کند
       document.getElementById('m-title').textContent = `دریافت ${name}`;
       document.getElementById('m-phone').value = '';
       clearError();
@@ -600,9 +631,8 @@
       document.getElementById('m-phone').style.borderColor = 'var(--border-color)';
     }
 
-    // ارسال به شیت گوگل (بدون بلاک کردن دانلود)
     function logToGoogleSheet(phoneVal, isRepeat) {
-      if (GOOGLE_SCRIPT_URL && !GOOGLE_SCRIPT_URL.includes("YOUR_GOOGLE_SCRIPT")) {
+      if (GOOGLE_SCRIPT_URL) {
         const payload = {
           phone: isRepeat ? `${phoneVal} (دانلود مجدد)` : phoneVal,
           fileName: activeTool.name
@@ -616,20 +646,6 @@
       }
     }
 
-    // اجرای دانلود برای کاربر تکراری بدون باز کردن مودال
-    function executeDownloadWithLog(phoneVal, isRepeat) {
-      logToGoogleSheet(phoneVal, isRepeat);
-      trackDownload(activeTool.key);
-
-      const tempLink = document.createElement('a');
-      tempLink.href = activeTool.url;
-      tempLink.setAttribute('download', '');
-      document.body.appendChild(tempLink);
-      tempLink.click();
-      document.body.removeChild(tempLink);
-    }
-
-    // اعتبارسنجی فرم مودال برای کاربر جدید
     function submitAndDownload() {
       const phoneInput = document.getElementById('m-phone');
       const phoneVal = phoneInput.value.trim();
@@ -645,11 +661,12 @@
       btnSubmit.disabled = true;
       btnSubmit.innerHTML = 'در حال ثبت و دریافت...';
 
-      // ذخیره شماره برای عدم پرسش در دانلودهای بعدی
+      // ذخیره شماره کاربر و وضعیت دانلود این ابزار خاص
       localStorage.setItem('user_phone', phoneVal);
+      localStorage.setItem(`downloaded_${activeTool.key}`, 'true');
 
       logToGoogleSheet(phoneVal, false);
-      trackDownload(activeTool.key);
+      incrementLocalCount(activeTool.key);
 
       setTimeout(() => {
         const tempLink = document.createElement('a');
@@ -665,43 +682,32 @@
       }, 700);
     }
 
-    // سیستم ثبت آمار دانلود
-    function trackDownload(fileName) {
-      let currentLocal = parseInt(localStorage.getItem(`dl_${fileName}`) || '0', 10) + 1;
-      localStorage.setItem(`dl_${fileName}`, currentLocal);
-      
-      const countEl = document.getElementById(`count-${fileName}`);
-      if (countEl) countEl.textContent = currentLocal;
-
-      fetch(`https://counterapi.com/api/${COUNT_NAMESPACE}/${fileName}/up`)
-        .then(res => res.json())
-        .then(data => {
-          if (data && data.count !== undefined) {
-            localStorage.setItem(`dl_${fileName}`, data.count);
-            if (countEl) countEl.textContent = data.count;
-          }
-        })
-        .catch(err => console.log('CounterAPI ping:', err));
+    // افزایش موقت عدد هنگام کلیک
+    function incrementLocalCount(toolKey) {
+      const elementId = `count-${toolKey}`;
+      const countEl = document.getElementById(elementId);
+      if(countEl) {
+         let current = parseInt(countEl.textContent) || 0;
+         countEl.textContent = current + 1;
+         localStorage.setItem(`cached_${elementId}`, current + 1);
+      }
     }
 
-    function loadDownloadCount(fileName) {
-      const countEl = document.getElementById(`count-${fileName}`);
-      const savedCount = localStorage.getItem(`dl_${fileName}`);
-      if (savedCount && countEl) {
-        countEl.textContent = savedCount;
-      }
+    // خواندن آمار قطعی از گوگل شیت
+    function loadDownloadCount(sheetFileName, elementId) {
+      const countEl = document.getElementById(elementId);
+      const savedCount = localStorage.getItem(`cached_${elementId}`);
+      if (savedCount && countEl) countEl.textContent = savedCount;
 
-      fetch(`https://counterapi.com/api/${COUNT_NAMESPACE}/${fileName}`)
+      fetch(GOOGLE_SCRIPT_URL + "?file=" + encodeURIComponent(sheetFileName))
         .then(res => res.json())
         .then(data => {
           if (data && data.count !== undefined && countEl) {
             countEl.textContent = data.count;
-            localStorage.setItem(`dl_${fileName}`, data.count);
+            localStorage.setItem(`cached_${elementId}`, data.count);
           }
         })
-        .catch(err => {
-          if (!savedCount && countEl) countEl.textContent = '1';
-        });
+        .catch(err => console.log('Google Sheets API Error:', err));
     }
 
     let lang = 'fa';
@@ -717,10 +723,11 @@
         tl1: 'تماس', tl2: 'پروژه‌ها', tl3: 'ابزارها', tl4: 'سوابق',
         save: 'ذخیره در مخاطبین (Save Contact)',
         phone: 'تلفن همراه', li: 'لینکدین', gh: 'گیت‌هاب', tg: 'تلگرام', wa: 'واتس‌اپ', email: 'ایمیل', edu: 'ایمیل آکادمیک',
-        tool1Title: 'اسلایسر تاریخ شمسی (نسخه جدید)',
-        tool1Desc: 'سازگار با نسخه‌های به‌روز Power BI Desktop و سرویس ابری.',
-        tool2Title: 'اسلایسر تاریخ شمسی (سازگار با ۲۰۲۰ و قبل‌تر)',
-        tool2Desc: 'پشتیبانی ویژه از نسخه‌های قدیمی و سرورهای On-Premise.'
+        tool1Title: 'اسلایسر تاریخ شمسی (Power BI)',
+        tool1Desc: 'افزونه سفارشی فیلتر و مدیریت تاریخ‌های شمسی در داشبوردها با عملکرد بهینه.',
+        tool2Title: 'تقویم شمسی (Power BI)',
+        tool2Desc: 'نمایش ماتریسی و جدولی تقویم شمسی با قابلیت انتخاب بازه‌های زمانی مشخص.',
+        newVer: 'نسخه جدید', oldVer: 'نسخه ۲۰۲۰'
       },
       en: {
         dir: 'ltr', btn: 'فا',
@@ -731,10 +738,11 @@
         tl1: 'Info', tl2: 'Projects', tl3: 'Tools', tl4: 'Creds',
         save: 'Save to Contacts (vCard)',
         phone: 'Mobile', li: 'LinkedIn', gh: 'GitHub', tg: 'Telegram', wa: 'WhatsApp', email: 'Email', edu: 'Academic',
-        tool1Title: 'Shamsi Date Slicer (Modern)',
-        tool1Desc: 'Compatible with updated Power BI Desktop and Power BI Cloud.',
-        tool2Title: 'Shamsi Date Slicer (Legacy 2020 & Older)',
-        tool2Desc: 'Optimized for legacy desktop versions and on-premise Report Servers.'
+        tool1Title: 'Shamsi Date Slicer (Power BI)',
+        tool1Desc: 'Custom visual plugin for filtering and managing Shamsi dates effectively.',
+        tool2Title: 'Shamsi Calendar (Power BI)',
+        tool2Desc: 'Matrix and tabular display of the Shamsi calendar with custom ranges.',
+        newVer: 'Modern', oldVer: 'Legacy 2020'
       }
     };
 
@@ -761,6 +769,9 @@
       document.getElementById('tool1-desc').textContent = d.tool1Desc;
       document.getElementById('tool2-title').textContent = d.tool2Title;
       document.getElementById('tool2-desc').textContent = d.tool2Desc;
+
+      document.querySelectorAll('.t-new-ver').forEach(el => el.textContent = d.newVer);
+      document.querySelectorAll('.t-old-ver').forEach(el => el.textContent = d.oldVer);
 
       document.getElementById('t-save').textContent = d.save;
       document.getElementById('t-phone').textContent = d.phone;
