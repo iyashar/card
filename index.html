@@ -14,7 +14,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google-site-verification" content="GJy0V-oLXJURSQKiAW-eDaQotdkiGQ0cr87xh08lbCE" />
 
-<!-- Favicon وکتور لوگوی مکعب داده یاشار آذرسعید -->
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64' fill='none'%3E%3Cpath d='M32 6L56 20V48L32 62L8 48V20L32 6Z' stroke='%230E1714' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M8 20L32 34L56 20' stroke='%239A7B4F' stroke-width='4' stroke-linejoin='round'/%3E%3Cpath d='M32 34V62' stroke='%239A7B4F' stroke-width='4' stroke-linecap='round'/%3E%3Cpath d='M20 41L32 34L44 41' stroke='%230E1714' stroke-width='3.5' stroke-linecap='round'/%3E%3C/svg%3E">
 
 <title>یاشار آذرسعید | Yashar Azarsaeid</title>
@@ -61,8 +60,8 @@
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: center;
-    padding: 24px 10px;
+    align-items: flex-start;
+    padding: 36px 12px;
     transition: background-color 0.25s ease, color 0.25s ease;
     overflow-x: hidden;
   }
@@ -82,20 +81,20 @@
   @keyframes pulseScale { 0% { transform: scale(0.88); opacity: 0; } 30% { opacity: 1; } 100% { transform: scale(1); opacity: 1; } }
 
   .layout-shell {
-    display: flex; align-items: flex-start; width: 100%; max-width: 495px;
+    display: flex; align-items: flex-start; width: 100%; max-width: 640px;
     opacity: 0; transform: translateY(14px);
     transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .layout-shell.ready { opacity: 1; transform: translateY(0); }
 
   .side-tabs {
-    display: flex; flex-direction: column; padding-top: 24px; z-index: 5; width: 38px; flex-shrink: 0; position: relative;
+    display: flex; flex-direction: column; padding-top: 28px; z-index: 5; width: 42px; flex-shrink: 0; position: sticky; top: 36px;
   }
   html[dir="rtl"] .side-tabs { margin-left: -1px; }
   html[dir="ltr"] .side-tabs { margin-right: -1px; }
 
   .side-tab-btn {
-    background: transparent; border: none; width: 38px; height: 84px; margin-bottom: 0;
+    background: transparent; border: none; width: 42px; height: 88px; margin-bottom: 0;
     cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center;
     position: relative; padding: 0; z-index: 1; font-family: inherit;
     transition: height 0.2s ease, margin 0.2s ease;
@@ -106,12 +105,12 @@
   .tab-stroke { fill: none; stroke: var(--border-color); stroke-width: 1px; stroke-linecap: round; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
 
   .tab-inner {
-    position: relative; z-index: 4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--text-muted); font-family: inherit; pointer-events: none;
+    position: relative; z-index: 4; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px; color: var(--text-muted); font-family: inherit; pointer-events: none;
   }
-  .tab-inner svg { width: 18px; height: 18px; opacity: 0.7; }
-  .tab-label-mini { font-family: 'Vazirmatn', 'Inter', sans-serif; font-size: 10px; font-weight: 600; letter-spacing: -0.2px; }
+  .tab-inner svg { width: 19px; height: 19px; opacity: 0.7; }
+  .tab-label-mini { font-family: 'Vazirmatn', 'Inter', sans-serif; font-size: 10.5px; font-weight: 600; letter-spacing: -0.2px; }
 
-  .side-tab-btn.active { height: 94px; margin-top: -5px; margin-bottom: -5px; z-index: 10; }
+  .side-tab-btn.active { height: 98px; margin-top: -5px; margin-bottom: -5px; z-index: 10; }
   .side-tab-btn.active .tab-fill { fill: var(--bg-card); }
   .side-tab-btn.active .tab-inner { color: var(--accent); }
   .side-tab-btn.active .tab-inner svg { opacity: 1; color: var(--accent); transform: scale(1.08); }
@@ -128,133 +127,165 @@
 
   .card-wrapper {
     flex: 1; background-color: var(--bg-card); border: 1px solid var(--border-color);
-    border-radius: 10px; padding: 24px 22px 26px; box-shadow: var(--shadow);
+    border-radius: 12px; padding: 26px 28px 26px; box-shadow: var(--shadow);
     position: relative; overflow: hidden; z-index: 2;
   }
   .card-wrapper::before {
-    content: ""; position: absolute; top: 0; right: 0; left: 0; height: 3px; background-color: var(--accent);
+    content: ""; position: absolute; top: 0; right: 0; left: 0; height: 3.5px; background-color: var(--accent);
   }
 
-  .top-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
-  .brand-logo svg { width: 28px; height: 28px; display: block; }
-  .actions-group { display: flex; gap: 7px; }
+  .top-controls { display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px; }
+  .brand-logo svg { width: 30px; height: 30px; display: block; }
+  .actions-group { display: flex; gap: 8px; }
   .icon-btn {
     background: var(--bg-item); border: 1px solid var(--border-subtle); color: var(--text-main);
-    height: 28px; padding: 0 9px; border-radius: 5px; font-size: 11px; font-weight: 600;
+    height: 30px; padding: 0 10px; border-radius: 6px; font-size: 11.5px; font-weight: 600;
     cursor: pointer; display: flex; align-items: center; justify-content: center; font-family: 'Inter', sans-serif;
     transition: all 0.2s ease;
   }
   .icon-btn:hover { border-color: var(--accent); color: var(--accent); }
 
-  .identity { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--border-subtle); }
-  .name { font-size: 22px; font-weight: 700; color: var(--text-main); line-height: 30px; height: 30px; margin-bottom: 3px; display: flex; align-items: center; }
-  html[lang="en"] .name { font-size: 19px; letter-spacing: 1px; text-transform: uppercase; }
-  .title { font-size: 12.5px; font-weight: 600; color: var(--accent); line-height: 19px; height: 19px; margin-bottom: 6px; display: flex; align-items: center; }
+  .identity { margin-bottom: 18px; padding-bottom: 16px; border-bottom: 1px solid var(--border-subtle); }
+  .name { font-size: 23px; font-weight: 700; color: var(--text-main); line-height: 32px; margin-bottom: 4px; display: flex; align-items: center; }
+  html[lang="en"] .name { font-size: 20px; letter-spacing: 1px; text-transform: uppercase; }
+  .title { font-size: 13px; font-weight: 600; color: var(--accent); line-height: 20px; margin-bottom: 8px; display: flex; align-items: center; }
   .phd-badge {
-    display: inline-flex; align-items: center; gap: 6px; font-size: 10.5px; color: var(--text-main);
-    background-color: var(--accent-soft); border: 1px solid var(--border-color); padding: 3px 8px; border-radius: 4px; margin-bottom: 9px; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-main);
+    background-color: var(--accent-soft); border: 1px solid var(--border-color); padding: 3px 9px; border-radius: 5px; margin-bottom: 10px; font-weight: 500;
   }
   .phd-dot { width: 5px; height: 5px; background-color: var(--accent); border-radius: 50%; }
-  .bio { font-size: 11.5px; line-height: 19px; min-height: 38px; color: var(--text-muted); font-weight: 300; }
+  .bio { font-size: 12px; line-height: 20px; color: var(--text-muted); font-weight: 300; }
 
-  /* تنظیمات اسکرول‌بار تب‌ها برای حالت رشد لیست */
-  .tab-content-area {
-    min-height: 310px; height: 310px; position: relative; overflow: hidden;
-  }
-  .tab-pane { 
-    position: absolute; inset: 0; display: none; opacity: 0; transition: opacity 0.2s ease; overflow-y: auto; 
-    padding-left: 4px; 
-  }
+  /* ارتفاع منعطف بدون محدودیت اسکرول داخلی */
+  .tab-content-area { min-height: 330px; position: relative; }
+  .tab-pane { display: none; opacity: 0; transition: opacity 0.25s ease; }
   .tab-pane.active { display: flex; flex-direction: column; opacity: 1; }
-  
-  .tab-pane::-webkit-scrollbar { width: 4px; }
-  .tab-pane::-webkit-scrollbar-track { background: transparent; }
-  .tab-pane::-webkit-scrollbar-thumb { background-color: var(--border-color); border-radius: 4px; }
-  .tab-pane::-webkit-scrollbar-thumb:hover { background-color: var(--accent); }
 
-  .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; direction: ltr; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; direction: ltr; }
   html[dir="rtl"] .tags { justify-content: flex-end; }
-  .tag { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--text-main); background-color: var(--bg-item); border: 1px solid var(--border-subtle); padding: 3px 7px; border-radius: 3px; }
+  .tag { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--text-main); background-color: var(--bg-item); border: 1px solid var(--border-subtle); padding: 4px 8px; border-radius: 4px; }
 
   .btn-primary {
-    width: 100%; height: 38px; background-color: var(--accent); color: var(--accent-contrast);
-    border: none; border-radius: 5px; font-family: inherit; font-size: 12px; font-weight: 700;
-    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; margin-bottom: 10px; transition: opacity 0.2s ease; text-decoration: none;
+    width: 100%; height: 40px; background-color: var(--accent); color: var(--accent-contrast);
+    border: none; border-radius: 6px; font-family: inherit; font-size: 12.5px; font-weight: 700;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 7px; margin-bottom: 12px; transition: opacity 0.2s ease; text-decoration: none;
   }
   .btn-primary:hover { opacity: 0.9; }
 
-  .links-stack { display: flex; flex-direction: column; gap: 5px; }
-  .row-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+  .links-stack { display: flex; flex-direction: column; gap: 6px; }
+  .row-2col { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
   .link-card {
     display: flex; align-items: center; justify-content: space-between; text-decoration: none;
-    background-color: var(--bg-item); border: 1px solid var(--border-subtle); height: 34px; padding: 0 10px; border-radius: 5px; transition: all 0.2s ease;
+    background-color: var(--bg-item); border: 1px solid var(--border-subtle); height: 36px; padding: 0 12px; border-radius: 6px; transition: all 0.2s ease;
   }
   .link-card:hover { border-color: var(--accent); background-color: var(--bg-item-hover); }
-  .link-label { font-size: 11px; color: var(--text-muted); }
-  .link-val { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--text-main); direction: ltr; font-weight: 500; }
+  .link-label { font-size: 11.5px; color: var(--text-muted); }
+  .link-val { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--text-main); direction: ltr; font-weight: 500; }
 
-  .items-list { display: flex; flex-direction: column; gap: 7px; margin-bottom: auto;}
-  .info-box { background-color: var(--bg-item); border: 1px solid var(--border-subtle); border-radius: 5px; padding: 9px 11px; }
-  .info-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 3px; gap: 6px; }
-  .info-box-title { font-size: 11.5px; font-weight: 700; color: var(--text-main); }
-  .info-box-badge { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--accent); background-color: var(--accent-soft); padding: 2px 5px; border-radius: 3px; white-space: nowrap; }
-  .info-box-desc { font-size: 10.5px; line-height: 1.5; color: var(--text-muted); }
+  .items-list { display: flex; flex-direction: column; gap: 10px; }
+  .info-box { background-color: var(--bg-item); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 12px 14px; transition: border-color 0.2s ease; }
+  .info-box:hover { border-color: var(--border-color); }
+  .info-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; gap: 8px; flex-wrap: wrap; }
+  .info-box-title { font-size: 12.5px; font-weight: 700; color: var(--text-main); }
+  
+  .header-actions { display: flex; align-items: center; gap: 6px; }
+  .info-box-badge { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--accent); background-color: var(--accent-soft); padding: 2px 6px; border-radius: 4px; white-space: nowrap; font-weight: 600; }
 
-  /* استایل باکس دانلود افقی برای ابزارها */
-  .tool-versions {
-    display: flex; gap: 6px; margin-top: 8px; flex-wrap: wrap;
+  /* دکمه تصاویر (گالری) */
+  .gallery-btn {
+    background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main);
+    font-family: inherit; font-size: 10.5px; font-weight: 600; padding: 3px 8px; border-radius: 5px;
+    cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.2s;
   }
+  .gallery-btn:hover { border-color: var(--accent); color: var(--accent); background-color: var(--accent-soft); }
+
+  .info-box-desc { font-size: 11.5px; line-height: 1.6; color: var(--text-muted); }
+
+  .tool-versions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
   .dl-mini-btn {
-    flex: 1; min-width: 120px; background-color: var(--bg-card); border: 1px solid var(--border-color);
-    color: var(--text-main); height: 28px; border-radius: 4px; font-family: inherit; font-size: 10px;
-    font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 5px;
+    flex: 1; min-width: 140px; background-color: var(--bg-card); border: 1px solid var(--border-color);
+    color: var(--text-main); height: 32px; border-radius: 6px; font-family: inherit; font-size: 11px;
+    font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
     transition: all 0.2s ease;
   }
-  .dl-mini-btn:hover {
-    border-color: var(--accent); color: var(--accent); background-color: var(--bg-item-hover);
-  }
-  .dl-mini-btn svg { width: 13px; height: 13px; }
+  .dl-mini-btn:hover { border-color: var(--accent); color: var(--accent); background-color: var(--bg-item-hover); }
+  .dl-mini-btn svg { width: 14px; height: 14px; }
   
   .footer {
-    margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border-subtle);
-    display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--text-muted); direction: ltr; flex-shrink: 0;
+    margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--border-subtle);
+    display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--text-muted); direction: ltr;
   }
 
+  /* مودال‌ها */
   .modal-overlay {
-    position: fixed; inset: 0; background: rgba(14, 23, 20, 0.7); backdrop-filter: blur(4px);
+    position: fixed; inset: 0; background: rgba(14, 23, 20, 0.78); backdrop-filter: blur(5px);
     display: flex; align-items: center; justify-content: center; z-index: 10000;
     opacity: 0; visibility: hidden; transition: opacity 0.25s ease, visibility 0.25s;
-    padding: 14px;
+    padding: 16px;
   }
   .modal-overlay.active { opacity: 1; visibility: visible; }
   .modal-card {
-    background-color: var(--bg-card); border: 1px solid var(--accent); border-radius: 10px;
-    max-width: 340px; width: 100%; padding: 22px 20px 20px; box-shadow: var(--shadow);
+    background-color: var(--bg-card); border: 1px solid var(--accent); border-radius: 12px;
+    max-width: 380px; width: 100%; padding: 24px 22px 22px; box-shadow: var(--shadow);
     transform: translateY(15px); transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
     position: relative;
   }
+  .modal-card.gallery-wide { max-width: 580px; }
   .modal-overlay.active .modal-card { transform: translateY(0); }
   .modal-close {
-    position: absolute; top: 12px; left: 14px; background: transparent; border: none;
+    position: absolute; top: 14px; left: 16px; background: transparent; border: none;
     color: var(--text-muted); cursor: pointer; font-size: 18px; line-height: 1;
   }
-  html[dir="ltr"] .modal-close { left: auto; right: 14px; }
-  .modal-title { font-size: 13.5px; font-weight: 700; color: var(--text-main); margin-bottom: 6px; }
-  .modal-desc { font-size: 11px; line-height: 1.6; color: var(--text-muted); margin-bottom: 14px; }
+  html[dir="ltr"] .modal-close { left: auto; right: 16px; }
+  .modal-title { font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
+  .modal-desc { font-size: 11.5px; line-height: 1.6; color: var(--text-muted); margin-bottom: 14px; }
+  
+  /* استایل گالری چندعکسی */
+  .gallery-stage {
+    width: 100%; height: 290px; background-color: var(--bg-item); border: 1px solid var(--border-color);
+    border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center;
+    margin-bottom: 12px; position: relative;
+  }
+  .gallery-stage img { max-width: 100%; max-height: 100%; object-fit: contain; transition: opacity 0.2s ease; }
+  .gallery-nav {
+    position: absolute; top: 50%; transform: translateY(-50%); background: rgba(14, 23, 20, 0.65);
+    color: #F4F3EF; border: 1px solid rgba(255,255,255,0.15); width: 32px; height: 32px; border-radius: 50%;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px;
+    transition: background 0.2s;
+  }
+  .gallery-nav:hover { background: var(--accent); color: var(--accent-contrast); }
+  .gallery-prev { right: 10px; }
+  .gallery-next { left: 10px; }
+  html[dir="ltr"] .gallery-prev { right: auto; left: 10px; }
+  html[dir="ltr"] .gallery-next { left: auto; right: 10px; }
+  
+  .gallery-footer { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--text-muted); }
+  .gallery-dots { display: flex; gap: 6px; }
+  .g-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-color); cursor: pointer; transition: all 0.2s; }
+  .g-dot.active { background: var(--accent); width: 18px; border-radius: 4px; }
+
   .modal-input {
-    width: 100%; height: 38px; background: var(--bg-item); border: 1px solid var(--border-color);
+    width: 100%; height: 40px; background: var(--bg-item); border: 1px solid var(--border-color);
     border-radius: 6px; padding: 0 12px; font-family: 'JetBrains Mono', monospace; font-size: 13px;
     color: var(--text-main); direction: ltr; text-align: center; margin-bottom: 8px; outline: none;
     transition: border-color 0.2s;
   }
   .modal-input:focus { border-color: var(--accent); }
-  .modal-error { font-size: 10px; color: #d9534f; margin-bottom: 10px; display: none; text-align: center; }
+  .modal-error { font-size: 10.5px; color: #d9534f; margin-bottom: 10px; display: none; text-align: center; }
   .modal-submit {
-    width: 100%; height: 38px; background: var(--accent); color: var(--accent-contrast);
-    border: none; border-radius: 6px; font-family: inherit; font-size: 12px; font-weight: 700;
+    width: 100%; height: 40px; background: var(--accent); color: var(--accent-contrast);
+    border: none; border-radius: 6px; font-family: inherit; font-size: 12.5px; font-weight: 700;
     cursor: pointer; transition: opacity 0.2s; display: flex; align-items: center; justify-content: center; gap: 6px;
   }
   .modal-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  @media (max-width: 540px) {
+    body { padding: 16px 8px; }
+    .card-wrapper { padding: 20px 16px 22px; }
+    .side-tabs { width: 36px; top: 16px; }
+    .side-tab-btn { width: 36px; }
+    .gallery-stage { height: 210px; }
+  }
 </style>
 </head>
 <body>
@@ -271,7 +302,7 @@
   <div class="layout-shell" id="main-shell">
     
     <aside class="side-tabs">
-      <button class="side-tab-btn active" onclick="switchTab('contact', this)">
+      <button class="side-tab-btn active" id="btn-tab-contact" onclick="switchTab('contact', this)">
         <svg class="tab-svg" viewBox="0 0 38 100" preserveAspectRatio="none">
           <path class="tab-fill" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100 Z"/>
           <path class="tab-stroke" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100"/>
@@ -284,7 +315,7 @@
         </div>
       </button>
 
-      <button class="side-tab-btn" onclick="switchTab('projects', this)">
+      <button class="side-tab-btn" id="btn-tab-projects" onclick="switchTab('projects', this)">
         <svg class="tab-svg" viewBox="0 0 38 100" preserveAspectRatio="none">
           <path class="tab-fill" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100 Z"/>
           <path class="tab-stroke" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100"/>
@@ -299,7 +330,7 @@
         </div>
       </button>
 
-      <button class="side-tab-btn" onclick="switchTab('tools', this)">
+      <button class="side-tab-btn" id="btn-tab-tools" onclick="switchTab('tools', this)">
         <svg class="tab-svg" viewBox="0 0 38 100" preserveAspectRatio="none">
           <path class="tab-fill" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100 Z"/>
           <path class="tab-stroke" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100"/>
@@ -312,7 +343,7 @@
         </div>
       </button>
 
-      <button class="side-tab-btn" onclick="switchTab('creds', this)">
+      <button class="side-tab-btn" id="btn-tab-creds" onclick="switchTab('creds', this)">
         <svg class="tab-svg" viewBox="0 0 38 100" preserveAspectRatio="none">
           <path class="tab-fill" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100 Z"/>
           <path class="tab-stroke" d="M 0,0 L 28,11 Q 38,15 38,24 L 38,76 Q 38,85 28,89 L 0,100"/>
@@ -408,9 +439,9 @@
                 </a>
               </div>
 
-              <a href="mailto:yazarsaeid@gmail.com" class="link-card">
-                <span class="link-label" id="t-email">ایمیل</span>
-                <span class="link-val">yazarsaeid@gmail.com</span>
+              <a href="mailto:info@iyashar.ir" class="link-card">
+                <span class="link-label" id="t-email">ایمیل رسمی</span>
+                <span class="link-val">info@iyashar.ir</span>
               </a>
               <a href="mailto:y.azarsaeid@ut.ac.ir" class="link-card">
                 <span class="link-label" id="t-edu">ایمیل آکادمیک</span>
@@ -449,52 +480,86 @@
           </div>
         </div>
 
-        <!-- تب ۳: ابزارها -->
+        <!-- تب ۳: ابزارها (با گالری چندعکسی و بدون نسخه پولی) -->
         <div id="tab-tools" class="tab-pane">
           <div class="items-list">
             
-            <!-- باکس ابزار ۱: اسلایسر شمسی -->
+            <!-- ابزار ۱: اسلایسر شمسی -->
             <div class="info-box">
-              <div class="info-box-header" style="margin-bottom: 4px;">
+              <div class="info-box-header">
                 <span class="info-box-title" id="tool1-title">اسلایسر تاریخ شمسی (Power BI)</span>
-                <span class="info-box-badge">Visual</span>
+                <div class="header-actions">
+                  <button class="gallery-btn" onclick="openGalleryModal('slicer')">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                    <span class="t-images">تصاویر</span>
+                  </button>
+                  <span class="info-box-badge">Visual</span>
+                </div>
               </div>
               <p class="info-box-desc" id="tool1-desc">افزونه سفارشی فیلتر و مدیریت تاریخ‌های شمسی در داشبوردها با عملکرد بهینه.</p>
               
-              <!-- دکمه‌های نسخه‌های مختلف اسلایسر -->
               <div class="tool-versions">
-                <button class="dl-mini-btn" onclick="openDownloadModal('Shamsi_Slicer', 'اسلایسر تاریخ شمسی پاور بی‌آی (نسخه ۱.۱)', 'https://raw.githubusercontent.com/iyashar/PowerBI_Shamsi_Slicer/main/Shamsi_Date_Slicer_PowerBI_v1.1.pbiviz')" title="سازگار با نسخه‌های ابری و جدید">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <button class="dl-mini-btn" onclick="openDownloadModal('Shamsi_Slicer', 'اسلایسر تاریخ شمسی پاور بی‌آی (نسخه ۱.۱)', 'https://raw.githubusercontent.com/iyashar/PowerBI_Shamsi_Slicer/main/Shamsi_Date_Slicer_PowerBI_v1.1.pbiviz')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                   <span><span class="t-new-ver">نسخه جدید</span> (<span id="count-Shamsi_Slicer">0</span>)</span>
                 </button>
-                <button class="dl-mini-btn" onclick="openDownloadModal('Shamsi_Slicer_Legacy', 'اسلایسر شمسی پاور بی‌آی (نسخه ۲۰۲۰ و قبل‌تر)', 'https://raw.githubusercontent.com/iyashar/PowerBI_Shamsi_Slicer/main/Shamsi_Date_Slicer_Legacy_2020.pbiviz')" title="پشتیبانی از Report Server و نسخه‌های قدیمی">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <button class="dl-mini-btn" onclick="openDownloadModal('Shamsi_Slicer_Legacy', 'اسلایسر شمسی پاور بی‌آی (نسخه ۲۰۲۰ و قبل‌تر)', 'https://raw.githubusercontent.com/iyashar/PowerBI_Shamsi_Slicer/main/Shamsi_Date_Slicer_Legacy_2020.pbiviz')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
                   <span><span class="t-old-ver">نسخه ۲۰۲۰</span> (<span id="count-Shamsi_Slicer_Legacy">0</span>)</span>
                 </button>
               </div>
             </div>
 
-            <!-- باکس ابزار ۲: تقویم شمسی -->
+            <!-- ابزار ۲: تقویم شمسی -->
             <div class="info-box">
-              <div class="info-box-header" style="margin-bottom: 4px;">
-                <span class="info-box-title" id="tool2-title">تقویم شمسی (Power BI)</span>
-                <span class="info-box-badge">Visual</span>
+              <div class="info-box-header">
+                <span class="info-box-title" id="tool2-title">تقویم شمسی پیشرفته (Power BI)</span>
+                <div class="header-actions">
+                  <button class="gallery-btn" onclick="openGalleryModal('calendar')">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                    <span class="t-images">تصاویر</span>
+                  </button>
+                  <span class="info-box-badge">Visual</span>
+                </div>
               </div>
-              <p class="info-box-desc" id="tool2-desc">نمایش ماتریسی و جدولی تقویم شمسی با قابلیت انتخاب بازه‌های زمانی مشخص.</p>
+              <p class="info-box-desc" id="tool2-desc">نمایش ماتریسی و جدولی تقویم شمسی با قابلیت انتخاب بازه‌های زمانی و تعطیلات رسمی.</p>
               
-              <!-- دکمه‌های نسخه‌های مختلف تقویم -->
-              <!-- دکمه‌های تقویم شمسی -->
-<div class="tool-versions">
-  <button class="dl-mini-btn" onclick="openDownloadModal('Shamsi_Calendar', 'تقویم شمسی پاور بی‌آی (نسخه جدید)', 'https://github.com/iyashar/PowerBI_Shamsi_Calender/raw/refs/heads/main/Shamsi_Advanced_Calendar_PowerBI.pbiviz')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-    <span><span class="t-new-ver">نسخه جدید</span> (<span id="count-Shamsi_Calendar">0</span>)</span>
-  </button>
-  
-  <button class="dl-mini-btn" onclick="openDownloadModal('Shamsi_Calendar_Legacy', 'تقویم شمسی پاور بی‌آی (نسخه ۲۰۲۰)', 'https://github.com/iyashar/PowerBI_Shamsi_Calender/raw/refs/heads/main/Shamsi_Advanced_Calendar_PowerBI_PBIRS.pbiviz')">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-    <span><span class="t-old-ver">نسخه ۲۰۲۰</span> (<span id="count-Shamsi_Calendar_Legacy">0</span>)</span>
-  </button>
-</div>
+              <div class="tool-versions">
+                <button class="dl-mini-btn" onclick="openDownloadModal('Shamsi_Calendar', 'تقویم شمسی پاور بی‌آی (نسخه جدید)', 'https://github.com/iyashar/PowerBI_Shamsi_Calender/raw/refs/heads/main/Shamsi_Advanced_Calendar_PowerBI.pbiviz')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <span><span class="t-new-ver">نسخه جدید</span> (<span id="count-Shamsi_Calendar">0</span>)</span>
+                </button>
+                <button class="dl-mini-btn" onclick="openDownloadModal('Shamsi_Calendar_Legacy', 'تقویم شمسی پاور بی‌آی (نسخه ۲۰۲۰)', 'https://github.com/iyashar/PowerBI_Shamsi_Calender/raw/refs/heads/main/Shamsi_Advanced_Calendar_PowerBI_PBIRS.pbiviz')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <span><span class="t-old-ver">نسخه ۲۰۲۰</span> (<span id="count-Shamsi_Calendar_Legacy">0</span>)</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- ابزار ۳: جدول راست‌به‌چپ -->
+            <div class="info-box">
+              <div class="info-box-header">
+                <span class="info-box-title" id="tool3-title">جدول راست‌به‌چپ (Power BI RTL Table)</span>
+                <div class="header-actions">
+                  <button class="gallery-btn" onclick="openGalleryModal('rtltable')">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                    <span class="t-images">تصاویر</span>
+                  </button>
+                  <span class="info-box-badge">Visual</span>
+                </div>
+              </div>
+              <p class="info-box-desc" id="tool3-desc">نمایش استاندارد جداول فارسی و راست‌به‌چپ در Power BI با چیدمان صحیح ستون‌ها و اسکرول.</p>
+              
+              <div class="tool-versions">
+                <button class="dl-mini-btn" onclick="openDownloadModal('RTL_Table', 'جدول راست‌به‌چپ پاور بی‌آی (نسخه جدید)', 'https://github.com/iyashar/RTL-Table-PowerBI/raw/refs/heads/main/RTL_Table_PowerBI.pbiviz')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <span><span class="t-new-ver">نسخه جدید</span> (<span id="count-RTL_Table">0</span>)</span>
+                </button>
+                <button class="dl-mini-btn" onclick="openDownloadModal('RTL_Table_Legacy', 'جدول راست‌به‌چپ پاور بی‌آی (نسخه ۲۰۲۰)', 'https://github.com/iyashar/RTL-Table-PowerBI/raw/refs/heads/main/RTL_Table_PowerBI_PBIRS.pbiviz')">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                  <span><span class="t-old-ver">نسخه ۲۰۲۰</span> (<span id="count-RTL_Table_Legacy">0</span>)</span>
+                </button>
+              </div>
             </div>
 
           </div>
@@ -540,10 +605,10 @@
 
   </div>
 
-  <!-- پنجره پاپ‌آپ دریافت شماره موبایل -->
-  <div class="modal-overlay" id="download-modal" onclick="closeDownloadModal(event)">
+  <!-- ۱. مودال دانلود رایگان (دریافت شماره موبایل) -->
+  <div class="modal-overlay" id="download-modal" onclick="closeModal('download-modal', event)">
     <div class="modal-card" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeDownloadModal()">✕</button>
+      <button class="modal-close" onclick="closeModal('download-modal')">✕</button>
       <div class="modal-title" id="m-title">دریافت فایل ابزار</div>
       <p class="modal-desc" id="m-desc">جهت دریافت لینک مستقیم و اطلاع از نسخه‌های بروزرسانی، شماره همراه خود را وارد کنید:</p>
       
@@ -552,17 +617,98 @@
       
       <button class="modal-submit" id="m-submit" onclick="submitAndDownload()">
         <span>تایید و دریافت مستقیم فایل</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="7 10 12 15 17 10"></polyline>
-          <line x1="12" y1="15" x2="12" y2="3"></line>
-        </svg>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
       </button>
     </div>
   </div>
 
+  <!-- ۲. مودال گالری تصاویر چندعکسی -->
+  <div class="modal-overlay" id="gallery-modal" onclick="closeModal('gallery-modal', event)">
+    <div class="modal-card gallery-wide" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal('gallery-modal')">✕</button>
+      <div class="modal-title" id="gl-title">تصاویر ابزار</div>
+      <p class="modal-desc" id="gl-caption">نمای محیط کاربری در Power BI</p>
+      
+      <div class="gallery-stage">
+        <button class="gallery-nav gallery-prev" onclick="changeSlide(-1)">&#10094;</button>
+        <img id="gl-img" src="" alt="Tool Screenshot">
+        <button class="gallery-nav gallery-next" onclick="changeSlide(1)">&#10095;</button>
+      </div>
+
+      <div class="gallery-footer">
+        <div class="gallery-dots" id="gl-dots"></div>
+        <span id="gl-counter">۱ از ۳</span>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // آدرس دقیق اسکریپت گوگل درایو شما
-    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6XE69U8HeUL2TR9sgeI39BGkH6Q52i95bt0ff6tHZ2PzhGHruAqnt3689Mws_LKMD/exec";
+    const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNn0Gbe86ebETiYHItUAEJTDsbiPUg1rvI_9tal3h5ZxZ66FW61TCww1yWawDs08C5/exec";
+
+    // تنظیمات گالری تصاویر (کافی است آدرس عکس‌های خود را در آرایه‌ها جایگزین کنید)
+    const galleryData = {
+      slicer: {
+        title: 'تصاویر: اسلایسر تاریخ شمسی',
+        slides: [
+          { src: 'https://placehold.co/800x450/18221F/C5A070?text=Shamsi+Slicer+View+1', caption: 'نمای انتخاب بازه تاریخ شمسی و تقویم بازشو' },
+          { src: 'https://placehold.co/800x450/18221F/F4F3EF?text=Shamsi+Slicer+Settings', caption: 'تنظیمات شخصی‌سازی رنگ‌ها و فونت در پنل Format' }
+        ]
+      },
+      calendar: {
+        title: 'تصاویر: تقویم شمسی پیشرفته',
+        slides: [
+          { src: 'https://placehold.co/800x450/18221F/C5A070?text=Shamsi+Calendar+Matrix', caption: 'نمایش ماتریسی روزهای ماه همراه با شاخص فروش' },
+          { src: 'https://placehold.co/800x450/18221F/F4F3EF?text=Shamsi+Calendar+Holidays', caption: 'نمایش خودکار تعطیلات رسمی و مناسبت‌ها' },
+          { src: 'https://placehold.co/800x450/18221F/8E9B95?text=Shamsi+Calendar+Tooltip', caption: 'پشتیبانی کامل از Report Page Tooltips' }
+        ]
+      },
+      rtltable: {
+        title: 'تصاویر: جدول راست‌به‌چپ (RTL Table)',
+        slides: [
+          { src: 'https://placehold.co/800x450/18221F/C5A070?text=RTL+Table+Layout', caption: 'چیدمان استاندارد ستون‌ها از راست به چپ بدون بهم‌ریختگی' },
+          { src: 'https://placehold.co/800x450/18221F/F4F3EF?text=RTL+Table+Conditional', caption: 'پشتیبانی از قالب‌بندی شرطی و آیکون‌های وضعیت' }
+        ]
+      }
+    };
+
+    let currentGallery = null;
+    let currentSlideIdx = 0;
+
+    function openGalleryModal(toolKey) {
+      currentGallery = galleryData[toolKey];
+      currentSlideIdx = 0;
+      document.getElementById('gl-title').textContent = currentGallery.title;
+      renderSlide();
+      document.getElementById('gallery-modal').classList.add('active');
+    }
+
+    function changeSlide(dir) {
+      if (!currentGallery) return;
+      const total = currentGallery.slides.length;
+      currentSlideIdx = (currentSlideIdx + dir + total) % total;
+      renderSlide();
+    }
+
+    function goToSlide(idx) {
+      currentSlideIdx = idx;
+      renderSlide();
+    }
+
+    function renderSlide() {
+      const slide = currentGallery.slides[currentSlideIdx];
+      document.getElementById('gl-img').src = slide.src;
+      document.getElementById('gl-caption').textContent = slide.caption;
+      document.getElementById('gl-counter').textContent = `${currentSlideIdx + 1} / ${currentGallery.slides.length}`;
+
+      const dotsContainer = document.getElementById('gl-dots');
+      dotsContainer.innerHTML = '';
+      currentGallery.slides.forEach((_, idx) => {
+        const dot = document.createElement('span');
+        dot.className = 'g-dot' + (idx === currentSlideIdx ? ' active' : '');
+        dot.onclick = () => goToSlide(idx);
+        dotsContainer.appendChild(dot);
+      });
+    }
 
     let activeTool = { key: '', name: '', url: '' };
 
@@ -572,49 +718,45 @@
         document.getElementById('main-shell').classList.add('ready');
       }, 1350);
 
-      // بارگذاری آمار منحصراً از دیتابیس گوگل شیت
+      const hash = window.location.hash.replace('#', '');
+      if (['contact', 'projects', 'tools', 'creds'].includes(hash)) {
+        const targetBtn = document.getElementById('btn-tab-' + hash);
+        if (targetBtn) switchTab(hash, targetBtn, false);
+      }
+
       loadDownloadCount('اسلایسر تاریخ شمسی پاور بی‌آی (نسخه ۱.۱)', 'count-Shamsi_Slicer');
       loadDownloadCount('اسلایسر شمسی پاور بی‌آی (نسخه ۲۰۲۰ و قبل‌تر)', 'count-Shamsi_Slicer_Legacy');
       loadDownloadCount('تقویم شمسی پاور بی‌آی (نسخه جدید)', 'count-Shamsi_Calendar');
       loadDownloadCount('تقویم شمسی پاور بی‌آی (نسخه ۲۰۲۰)', 'count-Shamsi_Calendar_Legacy');
+      loadDownloadCount('جدول راست‌به‌چپ پاور بی‌آی (نسخه جدید)', 'count-RTL_Table');
+      loadDownloadCount('جدول راست‌به‌چپ پاور بی‌آی (نسخه ۲۰۲۰)', 'count-RTL_Table_Legacy');
     });
 
-    function switchTab(tabId, btnElement) {
+    function switchTab(tabId, btnElement, updateHash = true) {
       document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.side-tab-btn').forEach(el => el.classList.remove('active'));
       
       document.getElementById('tab-' + tabId).classList.add('active');
       btnElement.classList.add('active');
+
+      if (updateHash) history.replaceState(null, null, '#' + tabId);
     }
 
     function openDownloadModal(key, name, url) {
       activeTool = { key, name, url };
-
-      // بررسی وضعیت دانلود برای این ابزار خاص
       const savedPhone = localStorage.getItem('user_phone');
       const hasDownloadedThisTool = localStorage.getItem(`downloaded_${key}`);
 
       if (savedPhone) {
-        // کاربر قبلا شماره داده است، پس پاپ آپ را باز نمی‌کنیم
-        // اگر این ابزار را قبلا دانلود نکرده، در شیت ثبت می‌کنیم و آمار بالا می‌رود
         if (!hasDownloadedThisTool) {
            logToGoogleSheet(savedPhone, false);
            incrementLocalCount(key);
            localStorage.setItem(`downloaded_${key}`, 'true');
         }
-        
-        // در هر صورت فایل دانلود می‌شود
-        const tempLink = document.createElement('a');
-        tempLink.href = activeTool.url;
-        tempLink.setAttribute('download', '');
-        document.body.appendChild(tempLink);
-        tempLink.click();
-        document.body.removeChild(tempLink);
-        
+        window.location.href = activeTool.url;
         return;
       }
 
-      // کاربر بار اول است که فایلی را از این سایت دانلود می‌کند
       document.getElementById('m-title').textContent = `دریافت ${name}`;
       document.getElementById('m-phone').value = '';
       clearError();
@@ -622,9 +764,9 @@
       setTimeout(() => document.getElementById('m-phone').focus(), 150);
     }
 
-    function closeDownloadModal(e) {
-      if (!e || e.target === document.getElementById('download-modal') || e.target.classList.contains('modal-close')) {
-        document.getElementById('download-modal').classList.remove('active');
+    function closeModal(modalId, e) {
+      if (!e || e.target === document.getElementById(modalId) || e.target.classList.contains('modal-close')) {
+        document.getElementById(modalId).classList.remove('active');
       }
     }
 
@@ -651,9 +793,7 @@
     function submitAndDownload() {
       const phoneInput = document.getElementById('m-phone');
       const phoneVal = phoneInput.value.trim();
-      const irPhoneRegex = /^09[0-9]{9}$/;
-
-      if (!irPhoneRegex.test(phoneVal)) {
+      if (!/^09[0-9]{9}$/.test(phoneVal)) {
         document.getElementById('m-error').style.display = 'block';
         phoneInput.style.borderColor = '#d9534f';
         return;
@@ -663,7 +803,6 @@
       btnSubmit.disabled = true;
       btnSubmit.innerHTML = 'در حال ثبت و دریافت...';
 
-      // ذخیره شماره کاربر و وضعیت دانلود این ابزار خاص
       localStorage.setItem('user_phone', phoneVal);
       localStorage.setItem(`downloaded_${activeTool.key}`, 'true');
 
@@ -671,20 +810,13 @@
       incrementLocalCount(activeTool.key);
 
       setTimeout(() => {
-        const tempLink = document.createElement('a');
-        tempLink.href = activeTool.url;
-        tempLink.setAttribute('download', '');
-        document.body.appendChild(tempLink);
-        tempLink.click();
-        document.body.removeChild(tempLink);
-
+        window.location.href = activeTool.url;
         btnSubmit.disabled = false;
         btnSubmit.innerHTML = '<span>تایید و دریافت مستقیم فایل</span>';
-        document.getElementById('download-modal').classList.remove('active');
+        closeModal('download-modal');
       }, 700);
     }
 
-    // افزایش موقت عدد هنگام کلیک
     function incrementLocalCount(toolKey) {
       const elementId = `count-${toolKey}`;
       const countEl = document.getElementById(elementId);
@@ -695,7 +827,6 @@
       }
     }
 
-    // خواندن آمار قطعی از گوگل شیت
     function loadDownloadCount(sheetFileName, elementId) {
       const countEl = document.getElementById(elementId);
       const savedCount = localStorage.getItem(`cached_${elementId}`);
@@ -724,12 +855,14 @@
         bio: 'طراحی معماری داده، داشبوردهای تحلیلی سازمانی و یکپارچه‌سازی سیستم‌های نرم‌افزاری',
         tl1: 'تماس', tl2: 'پروژه‌ها', tl3: 'ابزارها', tl4: 'سوابق',
         save: 'ذخیره در مخاطبین (Save Contact)',
-        phone: 'تلفن همراه', li: 'لینکدین', gh: 'گیت‌هاب', tg: 'تلگرام', wa: 'واتس‌اپ', email: 'ایمیل', edu: 'ایمیل آکادمیک',
+        phone: 'تلفن همراه', li: 'لینکدین', gh: 'گیت‌هاب', tg: 'تلگرام', wa: 'واتس‌اپ', email: 'ایمیل رسمی', edu: 'ایمیل آکادمیک',
         tool1Title: 'اسلایسر تاریخ شمسی (Power BI)',
         tool1Desc: 'افزونه سفارشی فیلتر و مدیریت تاریخ‌های شمسی در داشبوردها با عملکرد بهینه.',
-        tool2Title: 'تقویم شمسی (Power BI)',
-        tool2Desc: 'نمایش ماتریسی و جدولی تقویم شمسی با قابلیت انتخاب بازه‌های زمانی مشخص.',
-        newVer: 'نسخه جدید', oldVer: 'نسخه ۲۰۲۰'
+        tool2Title: 'تقویم شمسی پیشرفته (Power BI)',
+        tool2Desc: 'نمایش ماتریسی و جدولی تقویم شمسی با قابلیت انتخاب بازه‌های زمانی و تعطیلات رسمی.',
+        tool3Title: 'جدول راست‌به‌چپ (Power BI RTL Table)',
+        tool3Desc: 'نمایش استاندارد جداول فارسی و راست‌به‌چپ در Power BI با چیدمان صحیح ستون‌ها و اسکرول.',
+        newVer: 'نسخه جدید', oldVer: 'نسخه ۲۰۲۰', images: 'تصاویر'
       },
       en: {
         dir: 'ltr', btn: 'فا',
@@ -739,12 +872,14 @@
         bio: 'Designing enterprise data architectures, analytical BI dashboards & system integrations.',
         tl1: 'Info', tl2: 'Projects', tl3: 'Tools', tl4: 'Creds',
         save: 'Save to Contacts (vCard)',
-        phone: 'Mobile', li: 'LinkedIn', gh: 'GitHub', tg: 'Telegram', wa: 'WhatsApp', email: 'Email', edu: 'Academic',
+        phone: 'Mobile', li: 'LinkedIn', gh: 'GitHub', tg: 'Telegram', wa: 'WhatsApp', email: 'Official Email', edu: 'Academic',
         tool1Title: 'Shamsi Date Slicer (Power BI)',
         tool1Desc: 'Custom visual plugin for filtering and managing Shamsi dates effectively.',
-        tool2Title: 'Shamsi Calendar (Power BI)',
-        tool2Desc: 'Matrix and tabular display of the Shamsi calendar with custom ranges.',
-        newVer: 'Modern', oldVer: 'Legacy 2020'
+        tool2Title: 'Advanced Shamsi Calendar (Power BI)',
+        tool2Desc: 'Matrix and tabular display of the Shamsi calendar with custom ranges and holidays.',
+        tool3Title: 'RTL Table (Power BI)',
+        tool3Desc: 'Native right-to-left table visual for Persian and Arabic reports in Power BI.',
+        newVer: 'Modern', oldVer: 'Legacy 2020', images: 'Images'
       }
     };
 
@@ -771,9 +906,12 @@
       document.getElementById('tool1-desc').textContent = d.tool1Desc;
       document.getElementById('tool2-title').textContent = d.tool2Title;
       document.getElementById('tool2-desc').textContent = d.tool2Desc;
+      document.getElementById('tool3-title').textContent = d.tool3Title;
+      document.getElementById('tool3-desc').textContent = d.tool3Desc;
 
       document.querySelectorAll('.t-new-ver').forEach(el => el.textContent = d.newVer);
       document.querySelectorAll('.t-old-ver').forEach(el => el.textContent = d.oldVer);
+      document.querySelectorAll('.t-images').forEach(el => el.textContent = d.images);
 
       document.getElementById('t-save').textContent = d.save;
       document.getElementById('t-phone').textContent = d.phone;
@@ -804,7 +942,7 @@
         "TITLE:Senior Data Analyst & BI Specialist | Ph.D. Candidate in Industrial Engineering (UT)",
         "NOTE:Data Architecture, System Integration, Power BI & Enterprise Analytics",
         "TEL;TYPE=CELL,VOICE:+989113406338",
-        "EMAIL;TYPE=PREF,INTERNET:yazarsaeid@gmail.com",
+        "EMAIL;TYPE=PREF,INTERNET:info@iyashar.ir",
         "EMAIL;TYPE=INTERNET:y.azarsaeid@ut.ac.ir",
         "URL:https://www.linkedin.com/in/iyashar/",
         "URL:https://github.com/iyashar/",
