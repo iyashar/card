@@ -156,7 +156,6 @@
   .phd-dot { width: 5px; height: 5px; background-color: var(--accent); border-radius: 50%; }
   .bio { font-size: 12px; line-height: 20px; color: var(--text-muted); font-weight: 300; }
 
-  /* ارتفاع منعطف بدون محدودیت اسکرول داخلی */
   .tab-content-area { min-height: 330px; position: relative; }
   .tab-pane { display: none; opacity: 0; transition: opacity 0.25s ease; }
   .tab-pane.active { display: flex; flex-direction: column; opacity: 1; }
@@ -187,18 +186,7 @@
   .info-box:hover { border-color: var(--border-color); }
   .info-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; gap: 8px; flex-wrap: wrap; }
   .info-box-title { font-size: 12.5px; font-weight: 700; color: var(--text-main); }
-  
-  .header-actions { display: flex; align-items: center; gap: 6px; }
   .info-box-badge { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--accent); background-color: var(--accent-soft); padding: 2px 6px; border-radius: 4px; white-space: nowrap; font-weight: 600; }
-
-  /* دکمه تصاویر (گالری) */
-  .gallery-btn {
-    background: var(--bg-card); border: 1px solid var(--border-color); color: var(--text-main);
-    font-family: inherit; font-size: 10.5px; font-weight: 600; padding: 3px 8px; border-radius: 5px;
-    cursor: pointer; display: inline-flex; align-items: center; gap: 5px; transition: all 0.2s;
-  }
-  .gallery-btn:hover { border-color: var(--accent); color: var(--accent); background-color: var(--accent-soft); }
-
   .info-box-desc { font-size: 11.5px; line-height: 1.6; color: var(--text-muted); }
 
   .tool-versions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
@@ -216,7 +204,7 @@
     display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--text-muted); direction: ltr;
   }
 
-  /* مودال‌ها */
+  /* مودال دانلود */
   .modal-overlay {
     position: fixed; inset: 0; background: rgba(14, 23, 20, 0.78); backdrop-filter: blur(5px);
     display: flex; align-items: center; justify-content: center; z-index: 10000;
@@ -230,7 +218,6 @@
     transform: translateY(15px); transition: transform 0.25s cubic-bezier(0.2, 0.9, 0.3, 1);
     position: relative;
   }
-  .modal-card.gallery-wide { max-width: 580px; }
   .modal-overlay.active .modal-card { transform: translateY(0); }
   .modal-close {
     position: absolute; top: 14px; left: 16px; background: transparent; border: none;
@@ -239,30 +226,6 @@
   html[dir="ltr"] .modal-close { left: auto; right: 16px; }
   .modal-title { font-size: 14px; font-weight: 700; color: var(--text-main); margin-bottom: 4px; }
   .modal-desc { font-size: 11.5px; line-height: 1.6; color: var(--text-muted); margin-bottom: 14px; }
-  
-  /* استایل گالری چندعکسی */
-  .gallery-stage {
-    width: 100%; height: 290px; background-color: var(--bg-item); border: 1px solid var(--border-color);
-    border-radius: 8px; overflow: hidden; display: flex; align-items: center; justify-content: center;
-    margin-bottom: 12px; position: relative;
-  }
-  .gallery-stage img { max-width: 100%; max-height: 100%; object-fit: contain; transition: opacity 0.2s ease; }
-  .gallery-nav {
-    position: absolute; top: 50%; transform: translateY(-50%); background: rgba(14, 23, 20, 0.65);
-    color: #F4F3EF; border: 1px solid rgba(255,255,255,0.15); width: 32px; height: 32px; border-radius: 50%;
-    cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 14px;
-    transition: background 0.2s;
-  }
-  .gallery-nav:hover { background: var(--accent); color: var(--accent-contrast); }
-  .gallery-prev { right: 10px; }
-  .gallery-next { left: 10px; }
-  html[dir="ltr"] .gallery-prev { right: auto; left: 10px; }
-  html[dir="ltr"] .gallery-next { left: auto; right: 10px; }
-  
-  .gallery-footer { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: var(--text-muted); }
-  .gallery-dots { display: flex; gap: 6px; }
-  .g-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border-color); cursor: pointer; transition: all 0.2s; }
-  .g-dot.active { background: var(--accent); width: 18px; border-radius: 4px; }
 
   .modal-input {
     width: 100%; height: 40px; background: var(--bg-item); border: 1px solid var(--border-color);
@@ -284,7 +247,6 @@
     .card-wrapper { padding: 20px 16px 22px; }
     .side-tabs { width: 36px; top: 16px; }
     .side-tab-btn { width: 36px; }
-    .gallery-stage { height: 210px; }
   }
 </style>
 </head>
@@ -480,7 +442,7 @@
           </div>
         </div>
 
-        <!-- تب ۳: ابزارها (با گالری چندعکسی و بدون نسخه پولی) -->
+        <!-- تب ۳: ابزارها -->
         <div id="tab-tools" class="tab-pane">
           <div class="items-list">
             
@@ -488,13 +450,7 @@
             <div class="info-box">
               <div class="info-box-header">
                 <span class="info-box-title" id="tool1-title">اسلایسر تاریخ شمسی (Power BI)</span>
-                <div class="header-actions">
-                  <button class="gallery-btn" onclick="openGalleryModal('slicer')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                    <span class="t-images">تصاویر</span>
-                  </button>
-                  <span class="info-box-badge">Visual</span>
-                </div>
+                <span class="info-box-badge">Visual</span>
               </div>
               <p class="info-box-desc" id="tool1-desc">افزونه سفارشی فیلتر و مدیریت تاریخ‌های شمسی در داشبوردها با عملکرد بهینه.</p>
               
@@ -514,13 +470,7 @@
             <div class="info-box">
               <div class="info-box-header">
                 <span class="info-box-title" id="tool2-title">تقویم شمسی پیشرفته (Power BI)</span>
-                <div class="header-actions">
-                  <button class="gallery-btn" onclick="openGalleryModal('calendar')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                    <span class="t-images">تصاویر</span>
-                  </button>
-                  <span class="info-box-badge">Visual</span>
-                </div>
+                <span class="info-box-badge">Visual</span>
               </div>
               <p class="info-box-desc" id="tool2-desc">نمایش ماتریسی و جدولی تقویم شمسی با قابلیت انتخاب بازه‌های زمانی و تعطیلات رسمی.</p>
               
@@ -540,13 +490,7 @@
             <div class="info-box">
               <div class="info-box-header">
                 <span class="info-box-title" id="tool3-title">جدول راست‌به‌چپ (Power BI RTL Table)</span>
-                <div class="header-actions">
-                  <button class="gallery-btn" onclick="openGalleryModal('rtltable')">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                    <span class="t-images">تصاویر</span>
-                  </button>
-                  <span class="info-box-badge">Visual</span>
-                </div>
+                <span class="info-box-badge">Visual</span>
               </div>
               <p class="info-box-desc" id="tool3-desc">نمایش استاندارد جداول فارسی و راست‌به‌چپ در Power BI با چیدمان صحیح ستون‌ها و اسکرول.</p>
               
@@ -605,7 +549,7 @@
 
   </div>
 
-  <!-- ۱. مودال دانلود رایگان (دریافت شماره موبایل) -->
+  <!-- مودال دانلود رایگان (دریافت شماره موبایل) -->
   <div class="modal-overlay" id="download-modal" onclick="closeModal('download-modal', event)">
     <div class="modal-card" onclick="event.stopPropagation()">
       <button class="modal-close" onclick="closeModal('download-modal')">✕</button>
@@ -622,93 +566,8 @@
     </div>
   </div>
 
-  <!-- ۲. مودال گالری تصاویر چندعکسی -->
-  <div class="modal-overlay" id="gallery-modal" onclick="closeModal('gallery-modal', event)">
-    <div class="modal-card gallery-wide" onclick="event.stopPropagation()">
-      <button class="modal-close" onclick="closeModal('gallery-modal')">✕</button>
-      <div class="modal-title" id="gl-title">تصاویر ابزار</div>
-      <p class="modal-desc" id="gl-caption">نمای محیط کاربری در Power BI</p>
-      
-      <div class="gallery-stage">
-        <button class="gallery-nav gallery-prev" onclick="changeSlide(-1)">&#10094;</button>
-        <img id="gl-img" src="" alt="Tool Screenshot">
-        <button class="gallery-nav gallery-next" onclick="changeSlide(1)">&#10095;</button>
-      </div>
-
-      <div class="gallery-footer">
-        <div class="gallery-dots" id="gl-dots"></div>
-        <span id="gl-counter">۱ از ۳</span>
-      </div>
-    </div>
-  </div>
-
   <script>
     const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyNn0Gbe86ebETiYHItUAEJTDsbiPUg1rvI_9tal3h5ZxZ66FW61TCww1yWawDs08C5/exec";
-
-    // تنظیمات گالری تصاویر (کافی است آدرس عکس‌های خود را در آرایه‌ها جایگزین کنید)
-    const galleryData = {
-      slicer: {
-        title: 'تصاویر: اسلایسر تاریخ شمسی',
-        slides: [
-          { src: 'https://placehold.co/800x450/18221F/C5A070?text=Shamsi+Slicer+View+1', caption: 'نمای انتخاب بازه تاریخ شمسی و تقویم بازشو' },
-          { src: 'https://placehold.co/800x450/18221F/F4F3EF?text=Shamsi+Slicer+Settings', caption: 'تنظیمات شخصی‌سازی رنگ‌ها و فونت در پنل Format' }
-        ]
-      },
-      calendar: {
-        title: 'تصاویر: تقویم شمسی پیشرفته',
-        slides: [
-          { src: 'https://placehold.co/800x450/18221F/C5A070?text=Shamsi+Calendar+Matrix', caption: 'نمایش ماتریسی روزهای ماه همراه با شاخص فروش' },
-          { src: 'https://placehold.co/800x450/18221F/F4F3EF?text=Shamsi+Calendar+Holidays', caption: 'نمایش خودکار تعطیلات رسمی و مناسبت‌ها' },
-          { src: 'https://placehold.co/800x450/18221F/8E9B95?text=Shamsi+Calendar+Tooltip', caption: 'پشتیبانی کامل از Report Page Tooltips' }
-        ]
-      },
-      rtltable: {
-        title: 'تصاویر: جدول راست‌به‌چپ (RTL Table)',
-        slides: [
-          { src: 'https://placehold.co/800x450/18221F/C5A070?text=RTL+Table+Layout', caption: 'چیدمان استاندارد ستون‌ها از راست به چپ بدون بهم‌ریختگی' },
-          { src: 'https://placehold.co/800x450/18221F/F4F3EF?text=RTL+Table+Conditional', caption: 'پشتیبانی از قالب‌بندی شرطی و آیکون‌های وضعیت' }
-        ]
-      }
-    };
-
-    let currentGallery = null;
-    let currentSlideIdx = 0;
-
-    function openGalleryModal(toolKey) {
-      currentGallery = galleryData[toolKey];
-      currentSlideIdx = 0;
-      document.getElementById('gl-title').textContent = currentGallery.title;
-      renderSlide();
-      document.getElementById('gallery-modal').classList.add('active');
-    }
-
-    function changeSlide(dir) {
-      if (!currentGallery) return;
-      const total = currentGallery.slides.length;
-      currentSlideIdx = (currentSlideIdx + dir + total) % total;
-      renderSlide();
-    }
-
-    function goToSlide(idx) {
-      currentSlideIdx = idx;
-      renderSlide();
-    }
-
-    function renderSlide() {
-      const slide = currentGallery.slides[currentSlideIdx];
-      document.getElementById('gl-img').src = slide.src;
-      document.getElementById('gl-caption').textContent = slide.caption;
-      document.getElementById('gl-counter').textContent = `${currentSlideIdx + 1} / ${currentGallery.slides.length}`;
-
-      const dotsContainer = document.getElementById('gl-dots');
-      dotsContainer.innerHTML = '';
-      currentGallery.slides.forEach((_, idx) => {
-        const dot = document.createElement('span');
-        dot.className = 'g-dot' + (idx === currentSlideIdx ? ' active' : '');
-        dot.onclick = () => goToSlide(idx);
-        dotsContainer.appendChild(dot);
-      });
-    }
 
     let activeTool = { key: '', name: '', url: '' };
 
@@ -862,7 +721,7 @@
         tool2Desc: 'نمایش ماتریسی و جدولی تقویم شمسی با قابلیت انتخاب بازه‌های زمانی و تعطیلات رسمی.',
         tool3Title: 'جدول راست‌به‌چپ (Power BI RTL Table)',
         tool3Desc: 'نمایش استاندارد جداول فارسی و راست‌به‌چپ در Power BI با چیدمان صحیح ستون‌ها و اسکرول.',
-        newVer: 'نسخه جدید', oldVer: 'نسخه ۲۰۲۰', images: 'تصاویر'
+        newVer: 'نسخه جدید', oldVer: 'نسخه ۲۰۲۰'
       },
       en: {
         dir: 'ltr', btn: 'فا',
@@ -879,7 +738,7 @@
         tool2Desc: 'Matrix and tabular display of the Shamsi calendar with custom ranges and holidays.',
         tool3Title: 'RTL Table (Power BI)',
         tool3Desc: 'Native right-to-left table visual for Persian and Arabic reports in Power BI.',
-        newVer: 'Modern', oldVer: 'Legacy 2020', images: 'Images'
+        newVer: 'Modern', oldVer: 'Legacy 2020'
       }
     };
 
@@ -911,7 +770,6 @@
 
       document.querySelectorAll('.t-new-ver').forEach(el => el.textContent = d.newVer);
       document.querySelectorAll('.t-old-ver').forEach(el => el.textContent = d.oldVer);
-      document.querySelectorAll('.t-images').forEach(el => el.textContent = d.images);
 
       document.getElementById('t-save').textContent = d.save;
       document.getElementById('t-phone').textContent = d.phone;
