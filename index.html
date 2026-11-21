@@ -179,14 +179,17 @@
   }
   .link-card:hover { border-color: var(--accent); background-color: var(--bg-item-hover); }
   .link-label { font-size: 11.5px; color: var(--text-muted); }
-  .link-val { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--text-main); direction: ltr; font-weight: 500; }
+  .link-val { font-family: 'JetBrains Mono', monospace; font-size: 11.5px; color: var(--text-main); direction: ltr; unicode-bidi: isolate; font-weight: 500; }
 
   .items-list { display: flex; flex-direction: column; gap: 10px; }
   .info-box { background-color: var(--bg-item); border: 1px solid var(--border-subtle); border-radius: 8px; padding: 12px 14px; transition: border-color 0.2s ease; }
   .info-box:hover { border-color: var(--border-color); }
   .info-box-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 5px; gap: 8px; flex-wrap: wrap; }
   .info-box-title { font-size: 12.5px; font-weight: 700; color: var(--text-main); }
+  
+  .header-actions { display: flex; align-items: center; gap: 6px; }
   .info-box-badge { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; color: var(--accent); background-color: var(--accent-soft); padding: 2px 6px; border-radius: 4px; white-space: nowrap; font-weight: 600; }
+
   .info-box-desc { font-size: 11.5px; line-height: 1.6; color: var(--text-muted); }
 
   .tool-versions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
@@ -450,7 +453,9 @@
             <div class="info-box">
               <div class="info-box-header">
                 <span class="info-box-title" id="tool1-title">اسلایسر تاریخ شمسی (Power BI)</span>
-                <span class="info-box-badge">Visual</span>
+                <div class="header-actions">
+                  <span class="info-box-badge">Visual</span>
+                </div>
               </div>
               <p class="info-box-desc" id="tool1-desc">افزونه سفارشی فیلتر و مدیریت تاریخ‌های شمسی در داشبوردها با عملکرد بهینه.</p>
               
@@ -470,7 +475,9 @@
             <div class="info-box">
               <div class="info-box-header">
                 <span class="info-box-title" id="tool2-title">تقویم شمسی پیشرفته (Power BI)</span>
-                <span class="info-box-badge">Visual</span>
+                <div class="header-actions">
+                  <span class="info-box-badge">Visual</span>
+                </div>
               </div>
               <p class="info-box-desc" id="tool2-desc">نمایش ماتریسی و جدولی تقویم شمسی با قابلیت انتخاب بازه‌های زمانی و تعطیلات رسمی.</p>
               
@@ -490,7 +497,9 @@
             <div class="info-box">
               <div class="info-box-header">
                 <span class="info-box-title" id="tool3-title">جدول راست‌به‌چپ (Power BI RTL Table)</span>
-                <span class="info-box-badge">Visual</span>
+                <div class="header-actions">
+                  <span class="info-box-badge">Visual</span>
+                </div>
               </div>
               <p class="info-box-desc" id="tool3-desc">نمایش استاندارد جداول فارسی و راست‌به‌چپ در Power BI با چیدمان صحیح ستون‌ها و اسکرول.</p>
               
@@ -643,7 +652,6 @@
         fetch(GOOGLE_SCRIPT_URL, {
           method: 'POST',
           mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         }).catch(err => console.log('Sheet log error:', err));
       }
@@ -715,12 +723,24 @@
         tl1: 'تماس', tl2: 'پروژه‌ها', tl3: 'ابزارها', tl4: 'سوابق',
         save: 'ذخیره در مخاطبین (Save Contact)',
         phone: 'تلفن همراه', li: 'لینکدین', gh: 'گیت‌هاب', tg: 'تلگرام', wa: 'واتس‌اپ', email: 'ایمیل رسمی', edu: 'ایمیل آکادمیک',
+        p1Title: 'معماری داده و هوش تجاری سازمانی',
+        p1Desc: 'طراحی مدل‌های ستاره‌ای (Star Schema)، کنترل بهای تمام‌شده، انحراف مصرف (BOM) و داشبوردهای مدیریتی زنجیره تأمین و تولید.',
+        p2Title: 'یکپارچه‌سازی سیستم‌ها و اتوماسیون',
+        p2Desc: 'اتصال پایگاه‌های داده ناهمگون، استقرار راهکارهای ERP مدیریت پروژه و طراحی خطوط لوله داده (Data Pipelines) و گردش‌کارهای هوشمند.',
+        p3Title: 'توسعه پلتفرم‌های داده و فرم‌ساز پویا',
+        p3Desc: 'معماری و پیاده‌سازی سامانه‌های چندمستاجره (Multi-tenant) جمع‌آوری و اعتبارسنجی داده با قابلیت اتصال به مدل‌های هوش مصنوعی.',
         tool1Title: 'اسلایسر تاریخ شمسی (Power BI)',
         tool1Desc: 'افزونه سفارشی فیلتر و مدیریت تاریخ‌های شمسی در داشبوردها با عملکرد بهینه.',
         tool2Title: 'تقویم شمسی پیشرفته (Power BI)',
         tool2Desc: 'نمایش ماتریسی و جدولی تقویم شمسی با قابلیت انتخاب بازه‌های زمانی و تعطیلات رسمی.',
         tool3Title: 'جدول راست‌به‌چپ (Power BI RTL Table)',
         tool3Desc: 'نمایش استاندارد جداول فارسی و راست‌به‌چپ در Power BI با چیدمان صحیح ستون‌ها و اسکرول.',
+        c1Title: 'دکتری مهندسی صنایع',
+        c1Desc: 'دانشگاه تهران — تمرکز بر بهینه‌سازی سیستم‌ها، تصمیم‌گیری داده‌محور و تحلیل‌های پیشرفته کسب‌وکار.',
+        c2Title: 'رهبری تیم‌های داده و حاکمیت داده',
+        c2Desc: 'طراحی ساختار سازمانی تیم‌های مهندسی داده، هوش تجاری و تحلیل پیشرفته در مقیاس هلدینگ‌ها و صنایع بزرگ.',
+        c3Title: 'استقرار زیرساخت‌های همکاری و ERP',
+        c3Desc: 'مدیریت و پیاده‌سازی سیستم‌های برنامه‌ریزی منابع سازمانی و پلتفرم‌های همکاری درون‌سازمانی (On-Premise).',
         newVer: 'نسخه جدید', oldVer: 'نسخه ۲۰۲۰'
       },
       en: {
@@ -732,12 +752,24 @@
         tl1: 'Info', tl2: 'Projects', tl3: 'Tools', tl4: 'Creds',
         save: 'Save to Contacts (vCard)',
         phone: 'Mobile', li: 'LinkedIn', gh: 'GitHub', tg: 'Telegram', wa: 'WhatsApp', email: 'Official Email', edu: 'Academic',
+        p1Title: 'Enterprise Data Architecture & BI',
+        p1Desc: 'Designing Star Schema data warehouses, cost accounting, BOM variance, and supply chain executive dashboards.',
+        p2Title: 'System Integration & Automation',
+        p2Desc: 'Connecting heterogeneous databases, deploying ERP project systems, and building automated ETL pipelines.',
+        p3Title: 'Dynamic Data & Form Platforms',
+        p3Desc: 'Architecting multi-tenant data collection and validation platforms integrated with AI models.',
         tool1Title: 'Shamsi Date Slicer (Power BI)',
         tool1Desc: 'Custom visual plugin for filtering and managing Shamsi dates effectively.',
         tool2Title: 'Advanced Shamsi Calendar (Power BI)',
         tool2Desc: 'Matrix and tabular display of the Shamsi calendar with custom ranges and holidays.',
         tool3Title: 'RTL Table (Power BI)',
         tool3Desc: 'Native right-to-left table visual for Persian and Arabic reports in Power BI.',
+        c1Title: 'Ph.D. in Industrial Engineering',
+        c1Desc: 'University of Tehran — Focusing on organizational process optimization, data-driven decisions, and business analytics.',
+        c2Title: 'Data Leadership & Governance',
+        c2Desc: 'Structuring data engineering, BI, and advanced analytics teams at enterprise holding scale.',
+        c3Title: 'Enterprise ERP & Collaboration',
+        c3Desc: 'Managing and deploying on-premise ERP systems and enterprise collaboration infrastructures.',
         newVer: 'Modern', oldVer: 'Legacy 2020'
       }
     };
@@ -761,12 +793,26 @@
       document.getElementById('tl-3').textContent = d.tl3;
       document.getElementById('tl-4').textContent = d.tl4;
 
+      document.getElementById('p1-title').textContent = d.p1Title;
+      document.getElementById('p1-desc').textContent = d.p1Desc;
+      document.getElementById('p2-title').textContent = d.p2Title;
+      document.getElementById('p2-desc').textContent = d.p2Desc;
+      document.getElementById('p3-title').textContent = d.p3Title;
+      document.getElementById('p3-desc').textContent = d.p3Desc;
+
       document.getElementById('tool1-title').textContent = d.tool1Title;
       document.getElementById('tool1-desc').textContent = d.tool1Desc;
       document.getElementById('tool2-title').textContent = d.tool2Title;
       document.getElementById('tool2-desc').textContent = d.tool2Desc;
       document.getElementById('tool3-title').textContent = d.tool3Title;
       document.getElementById('tool3-desc').textContent = d.tool3Desc;
+
+      document.getElementById('c1-title').textContent = d.c1Title;
+      document.getElementById('c1-desc').textContent = d.c1Desc;
+      document.getElementById('c2-title').textContent = d.c2Title;
+      document.getElementById('c2-desc').textContent = d.c2Desc;
+      document.getElementById('c3-title').textContent = d.c3Title;
+      document.getElementById('c3-desc').textContent = d.c3Desc;
 
       document.querySelectorAll('.t-new-ver').forEach(el => el.textContent = d.newVer);
       document.querySelectorAll('.t-old-ver').forEach(el => el.textContent = d.oldVer);
